@@ -1,0 +1,10 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.example-icon {
+    align-items: center;
+    display: flex;
+    padding: 0 5px;
+    margin: 0 3px;
+}
