@@ -11,14 +11,10 @@
 
 */
 
-body {
-  margin: 0;
-}
-
 .main-container {
-  background-color: rgb(0, 255, 200);
-  height: 100%;
+  height: auto;
   display: flex;
+  padding-top: 75px;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;

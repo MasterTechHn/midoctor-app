@@ -1,3 +1,8 @@
+.nav-top {
+  position: fixed;
+  overflow: hidden;
+}
+
 .example-spacer {
     flex: 1 1 auto;
 }
