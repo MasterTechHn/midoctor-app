@@ -1,5 +1,6 @@
 .nav-top {
-  position: fixed;
+  /* to keep on top of the window */
+  /* position: fixed; */
   overflow: hidden;
 }
 
