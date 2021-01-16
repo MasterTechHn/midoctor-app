@@ -10,3 +10,30 @@
   white-space: nowrap; 
 
 */
+
+body {
+  margin: 0;
+}
+
+.main-container {
+  background-color: rgb(0, 255, 200);
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main-hero {
+  justify-content: center;
+}
+
+.container-box {
+  width: auto;
+  height: 55px;
+  border: solid 1px;
+  margin: 5px 10px;
+  padding: 25px 25px;
+  box-shadow: 5px 10px #888888;
+}
