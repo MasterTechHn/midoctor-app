@@ -1,0 +1,18 @@
+<h1 mat-dialog-title> Request Module</h1>
+
+<div *ngIf="record.success">
+  <div mat-dialog-content>
+    <p>record: {{record.success}}</p>
+    <p>{{record.name}} tu solicitud ha sido enviada. </p>
+    <p>se te estara notificando al siguiente correo electronico {{record.email}}.</p>
+  </div>
+</div>
+
+<div *ngIf="!record.success">
+  <p>{{record.name}} tu solicitud no fue completada. </p>
+  <p>porfabor intenta de nuevo.</p>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onClick()">Continuar</button>
+</div>

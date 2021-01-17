@@ -11,6 +11,7 @@ import { NavHeroComponent } from './nav-hero/nav-hero.component';
 import { FooterComponent } from './footer/footer.component';
 import { PostulantComponent } from './postulant/postulant.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ModalRequestComponent } from './modal-request/modal-request.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     NavHeroComponent,
     FooterComponent,
     PostulantComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ModalRequestComponent
   ],
   imports: [
     BrowserModule,

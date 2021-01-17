@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { PostulantService } from '../services/postulant.service';
 import { Postulant } from '../interfaces/postulant';
+import { ModalRequestComponent } from '../modal-request/modal-request.component'
 
 @Component({
   selector: 'app-postulant',
@@ -24,13 +26,15 @@ export class PostulantComponent implements OnInit {
   });
 
   constructor(
+    private dialog: MatDialog,
     private postulantService: PostulantService
   ) { }
 
   ngOnInit(): void {
   }
 
-  onApply() {
+
+  onApply(): void {
     console.warn(this.postulantForm.value);
     debugger;
     console.warn(this.postulantForm.value.name);
@@ -51,6 +55,18 @@ export class PostulantComponent implements OnInit {
       .subscribe((res) => {
         debugger;
         console.warn(res);
+        if(res.success){
+          this.openDialog(res.createdPostulant);
+        }
       });
+  }
+
+  openDialog(data: any):void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = data;
+
+    this.dialog.open(ModalRequestComponent, dialogConfig);
   }
 }

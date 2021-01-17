@@ -20,7 +20,7 @@ export class PostulantService {
     private http: HttpClient
   ) { }
 
-  applyPostulant(postulant: Postulant): Observable<Postulant>{
-    return this.http.post<Postulant>(this.apiUri, postulant, this.httpOption)
+  applyPostulant(postulant: Postulant): Observable<any>{
+    return this.http.post<any>(this.apiUri, postulant, this.httpOption)
   }
 }
