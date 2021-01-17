@@ -26,4 +26,7 @@ export class PostulantComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onApply() {
+    console.warn(this.postulantForm.value);
+  }
 }

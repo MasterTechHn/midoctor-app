@@ -8,14 +8,16 @@
         <span>Mi doctor</span> 
         <span class="example-spacer"></span>
 
-        <button mat-icon-button class="example-icon" routerLink="/index">
-          <span>Iniciar sesion</span>
-          <mat-icon>login</mat-icon>
-        </button>
-        <button mat-icon-button class="example-icon" routerLink="/apply">
-          Aplicar ahora
-          <mat-icon>addchart</mat-icon>
-        </button>
+        <div class="nav-container-right">
+          <button type="button" mat-icon-button class="example-icon" routerLink="/index" style="">
+            <a>Iniciar sesion</a>
+            <mat-icon>login</mat-icon>
+          </button>
+          <button type="button" mat-icon-button class="example-icon" routerLink="/apply">
+            <a>Aplicar ahora</a>
+            <mat-icon>addchart</mat-icon>
+          </button>
+        </div>
     </mat-toolbar-row>
   </mat-toolbar>  
 </nav>

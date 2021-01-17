@@ -1,3 +1,7 @@
+a{
+    width: auto;
+}
+
 .nav-top {
   /* to keep on top of the window */
   /* position: fixed; */
@@ -9,8 +13,26 @@
 }
 
 .example-icon {
-    align-items: center;
+    /* align-items: center;
     display: flex;
     padding: 0 5px;
-    margin: 0 3px;
+    margin: 0 3px; */
+}
+
+.nav-container-right {
+    display: flex;
+    align-self: baseline;
+    justify-content: space-around;
+    width: calc(40vh - 0em);
+    height: auto;
+    margin: 10px 10px;
+    flex-wrap: wrap;
+}
+
+.nav-container-right [type="button"] {
+  width: auto;
+}
+
+.nav-container-right a{
+  text-decoration: none;
 }
