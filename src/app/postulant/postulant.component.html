@@ -1,7 +1,51 @@
 <div class="main-container">
-  <div class="container-box">
-    <div class="main-hero">
-      <h1>Postulant form</h1>
-    </div>
-</div>
+  <div class="postulant-container">
+      <form [formGroup]="postulantForm">
+        <div class="postulant-form">
+          <h2>Info Personal</h2>
+          <mat-form-field class="postulan-form-box">
+            <mat-label> Nombres: </mat-label>
+            <input matInput type="text" formControlName="name" placeholder="Debería contener ambos nombres.">
+          </mat-form-field>
+
+          <mat-form-field class="postulan-form-box">
+            <mat-label> Apellidos: </mat-label>
+            <input matInput type="text" formControlName="lastname" placeholder="Debería contener ambos apellidos.">
+          </mat-form-field>
+
+          <mat-form-field class="postulan-form-box">
+            <mat-label> Especialidad: </mat-label>
+            <input matInput type="text" formControlName="speciality" placeholder="Especialidad en el área medica.">
+          </mat-form-field>
+
+          <mat-form-field class="postulan-form-box">
+            <mat-label> Correo:  </mat-label>
+            <input matInput type="text" formControlName="email" placeholder="Correo electrónico personal">
+          </mat-form-field>
+
+          <mat-form-field class="postulan-form-box-number">
+            <mat-label> Teléfono:  </mat-label>
+            <input matInput type="number" formControlName="phone" placeholder="teléfono personal">
+          </mat-form-field>
+
+          <h2>Info Dirección</h2>
+          <div formGroupName="address" class="postulant-form-address-container">
+            <mat-form-field class="postulan-form-box">
+              <mat-label> Pais: </mat-label>
+              <input matInput type="text" formControlName="country" placeholder="Honduras">
+            </mat-form-field>
+
+            <mat-form-field class="postulan-form-box">
+              <mat-label> Ciudad: </mat-label>
+              <input matInput type="text" formControlName="city" placeholder="san pedro sula">
+            </mat-form-field>
+
+            <mat-form-field class="postulan-form-box">
+              <mat-label> Direccion:  </mat-label>
+              <input matInput type="text" formControlName="street" placeholder="col. stibys bloque #2">
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+  </div>
 </div>

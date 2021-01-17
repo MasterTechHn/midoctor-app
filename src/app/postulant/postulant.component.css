@@ -1,0 +1,33 @@
+.postulant-container {
+  text-align: left;
+  border: 1px solid;
+  padding: 25px 10px;
+  margin: 1em 1em 1em 1em;
+  width: auto;
+}
+
+.postulan-form{
+  display: flex;
+  padding: 10px 10px;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.postulan-form-box {
+  margin: 3px 5px;    
+  padding: 7px 10px;
+  width: 30%;
+}
+
+.postulan-form-box-number {
+  /* margin: 3px 5px;    
+  padding: 7px 10px; */
+  width: 25%;
+}
+
+.postulant-form-address-container {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+}
