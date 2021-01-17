@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { PostulantService } from '../services/postulant.service';
+import { Postulant } from '../interfaces/postulant';
 
 @Component({
   selector: 'app-postulant',
@@ -21,12 +23,34 @@ export class PostulantComponent implements OnInit {
     })
   });
 
-  constructor() { }
+  constructor(
+    private postulantService: PostulantService
+  ) { }
 
   ngOnInit(): void {
   }
 
   onApply() {
     console.warn(this.postulantForm.value);
+    debugger;
+    console.warn(this.postulantForm.value.name);
+    const postulant:Postulant = {
+      name: this.postulantForm.value.name,
+      lastname: this.postulantForm.value.lastname,
+      speciality: this.postulantForm.value.speciality,
+      email: this.postulantForm.value.email,
+      phone: this.postulantForm.value.phone,
+      address: {
+        country: this.postulantForm.value.address.country,
+        city: this.postulantForm.value.address.city,
+        street: this.postulantForm.value.address.street
+      }
+    }
+
+    this.postulantService.applyPostulant(postulant)
+      .subscribe((res) => {
+        debugger;
+        console.warn(res);
+      });
   }
 }

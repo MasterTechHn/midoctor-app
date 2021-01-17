@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './modules/app-routing.module';
 import { AppMaterialModule } from './modules/app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +23,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     AppMaterialModule,
     ReactiveFormsModule
