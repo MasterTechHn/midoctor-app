@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { PostulantService } from '../services/postulant.service';
 import { Postulant } from '../interfaces/postulant';
@@ -12,27 +12,29 @@ import { ModalRequestComponent } from '../modal-request/modal-request.component'
 })
 export class PostulantComponent implements OnInit {
 
-  postulantForm = new FormGroup({
-    name: new FormControl(''),
-    lastname: new FormControl(''),
-    speciality: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
-    address: new FormGroup({
-      country: new FormControl(''),
-      city: new FormControl(''),
-      street: new FormControl('')
-    })
-  });
-
+  postulantForm = new FormGroup({});
+  
   constructor(
+    private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private postulantService: PostulantService
   ) { }
 
   ngOnInit(): void {
-  }
+    this.postulantForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      lastname: ['', Validators.required],
+      speciality: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
+      phone: ['', Validators.required, Validators.minLength(8)],
+      address: this.formBuilder.group({
+        country: ['', Validators.required],
+        city: ['', Validators.required],
+        street: ['', Validators.required]
+      })
+    });
 
+  }
 
   onApply(): void {
     const postulant:Postulant = {
@@ -65,5 +67,9 @@ export class PostulantComponent implements OnInit {
     dialogConfig.data = data;
 
     this.dialog.open(ModalRequestComponent, dialogConfig);
+  }
+
+  public hasError = (controlName: string, errorName: string) =>{
+    return this.postulantForm.controls[controlName].hasError(errorName);
   }
 }

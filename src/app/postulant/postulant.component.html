@@ -5,51 +5,58 @@
           <h2>Info Personal</h2>
           <mat-form-field class="postulan-form-box">
             <mat-label> Nombres: </mat-label>
-            <input matInput type="text" formControlName="name" placeholder="Debería contener ambos nombres.">
+            <input matInput type="text" formControlName="name" placeholder="Debería contener ambos nombres." required>
+            <mat-error *ngIf="hasError('name', 'required')">El nombre es requerido.</mat-error>
           </mat-form-field>
 
           <mat-form-field class="postulan-form-box">
             <mat-label> Apellidos: </mat-label>
-            <input matInput type="text" formControlName="lastname" placeholder="Debería contener ambos apellidos.">
+            <input matInput type="text" formControlName="lastname" placeholder="Debería contener ambos apellidos." required>
+            <mat-error *ngIf="hasError('lastname', 'required')">El apellido es requerido.</mat-error>
           </mat-form-field>
 
           <mat-form-field class="postulan-form-box">
             <mat-label> Especialidad: </mat-label>
-            <input matInput type="text" formControlName="speciality" placeholder="Especialidad en el área medica.">
+            <input matInput type="text" formControlName="speciality" placeholder="Especialidad en el área medica." required>
+            <mat-error *ngIf="hasError('speciality', 'required')">La especialidad es requerida.</mat-error>
           </mat-form-field>
 
           <mat-form-field class="postulan-form-box">
             <mat-label> Correo:  </mat-label>
-            <input matInput type="text" formControlName="email" placeholder="Correo electrónico personal">
+            <input matInput type="email" formControlName="email" name="email" placeholder="Correo electrónico personal" required>
+            <mat-error *ngIf="hasError('email', 'required')">El correo es requerido.</mat-error>
+            <mat-error *ngIf="hasError('email', 'email')">Formato incorrecto.</mat-error>
           </mat-form-field>
 
           <mat-form-field class="postulan-form-box-number">
             <mat-label> Teléfono:  </mat-label>
-            <input matInput type="number" formControlName="phone" placeholder="teléfono personal">
+            <input matInput type="tel" formControlName="phone" id="phone" placeholder="teléfono personal" required minlength="8">
+            <mat-error *ngIf="hasError('phone', 'minlength')">minimo 8 digitos</mat-error>
           </mat-form-field>
 
           <h2>Info Dirección</h2>
           <div formGroupName="address" class="postulant-form-address-container">
             <mat-form-field class="postulan-form-box">
               <mat-label> Pais: </mat-label>
-              <input matInput type="text" formControlName="country" placeholder="Honduras">
+              <input matInput type="text" formControlName="country" placeholder="Honduras" required>
+              <!-- <mat-error *ngIf="hasError('country', 'required')">El país es requerido.</mat-error> -->
             </mat-form-field>
 
             <mat-form-field class="postulan-form-box">
               <mat-label> Ciudad: </mat-label>
-              <input matInput type="text" formControlName="city" placeholder="san pedro sula">
+              <input matInput type="text" formControlName="city" placeholder="san pedro sula" required>
             </mat-form-field>
 
             <mat-form-field class="postulan-form-box">
               <mat-label> Direccion:  </mat-label>
-              <input matInput type="text" formControlName="street" placeholder="col. stibys bloque #2">
+              <input matInput type="text" formControlName="street" placeholder="col. stibys bloque #2" required>
             </mat-form-field>
           </div>
         </div>
       </form>
 
       <div class="postulan-form-button-container">
-        <button mat-stroked-button color="primary" type="button" (click)="onApply()">Enviar aplicacion</button>
+        <button mat-stroked-button color="primary" type="button" (click)="onApply()" [disabled]="!postulantForm.valid">Enviar aplicacion</button>
       </div>
   </div>
 </div>
