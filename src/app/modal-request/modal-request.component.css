@@ -1,0 +1,25 @@
+.error-icon {
+  font-size: 6em;
+  color: rgb(238, 63, 63);
+  margin-right: 55px;
+}
+
+.success-icon { 
+  font-size: 6em;
+  color: rgb(0, 128, 0);
+  margin-right: 55px;
+}
+
+.modal-container {
+  text-align: center;
+}
+
+.modal-icon-container {
+  height: auto;
+  width: auto;
+}
+
+.modal-button-container {
+    display: flex;
+    justify-content: center;
+}

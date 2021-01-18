@@ -1,17 +1,33 @@
-<h1 mat-dialog-title> Request Module</h1>
+<div class="modal-container">
+    
+    <h1 mat-dialog-title> Request Module</h1>
+    
+    <div *ngIf="!error">
+        <div class="modal-container">
+            <div mat-dialog-content>
+              <mat-icon class="success-icon">
+                check_circle_outline
+              </mat-icon>
+              <p>{{response.name}} tu solicitud ha sido enviada. </p>
+              <p>se te estara notificando al siguiente correo electronico {{response.email}}.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div *ngIf="error">
+      <div class="modal-icon-container">
+          <mat-icon class="error-icon">
+            error_outline
+          </mat-icon>
+          <div>
+              <p>tu solicitud no fue completada.</p>
+              <p>porfavor intenta de nuevo o cantaca al equipo de backoffice.</p>
+          </div>
+      </div>
+    </div>
 
-<div *ngIf="!error">
-  <div mat-dialog-content>
-    <p>{{response.name}} tu solicitud ha sido enviada. </p>
-    <p>se te estara notificando al siguiente correo electronico {{response.email}}.</p>
-  </div>
+    <div mat-dialog-actions class="modal-button-container">
+      <button mat-stroked-button (click)="onClick()" color="primary" type="button">Continuar</button>
+    </div>
 </div>
 
-<div *ngIf="error">
-  <p>tu solicitud no fue completada.</p>
-  <p>porfabor intenta de nuevo o cantaca al equipo de backoffice.</p>
-</div>
-
-<div mat-dialog-actions>
-  <button mat-button (click)="onClick()">Continuar</button>
-</div>
