@@ -35,9 +35,6 @@ export class PostulantComponent implements OnInit {
 
 
   onApply(): void {
-    console.warn(this.postulantForm.value);
-    debugger;
-    console.warn(this.postulantForm.value.name);
     const postulant:Postulant = {
       name: this.postulantForm.value.name,
       lastname: this.postulantForm.value.lastname,
@@ -52,12 +49,12 @@ export class PostulantComponent implements OnInit {
     }
 
     this.postulantService.applyPostulant(postulant)
-      .subscribe((res) => {
-        debugger;
-        console.warn(res);
-        if(res.success){
-          this.openDialog(res.createdPostulant);
-        }
+      .subscribe(res => {
+        this.postulantForm.reset();
+        this.openDialog(res.createdPostulant);
+      }, error => {
+        this.openDialog(null);
+        console.warn(error);
       });
   }
 
