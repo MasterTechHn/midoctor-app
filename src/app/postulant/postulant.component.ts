@@ -11,28 +11,27 @@ import { ModalRequestComponent } from '../modal-request/modal-request.component'
   styleUrls: ['./postulant.component.css']
 })
 export class PostulantComponent implements OnInit {
-
-  postulantForm = new FormGroup({});
+  
+  postulantForm = this.fb.group({
+    name: ['', Validators.required],
+    lastname: ['', Validators.required],
+    speciality: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    phone: ['', [Validators.required, Validators.minLength(8)]],
+    address: this.fb.group({
+      country: ['', Validators.required],
+      city: ['', Validators.required],
+      street: ['', Validators.required]
+    })
+  });
   
   constructor(
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private dialog: MatDialog,
     private postulantService: PostulantService
   ) { }
 
   ngOnInit(): void {
-    this.postulantForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      lastname: ['', Validators.required],
-      speciality: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
-      phone: ['', Validators.required, Validators.minLength(8)],
-      address: this.formBuilder.group({
-        country: ['', Validators.required],
-        city: ['', Validators.required],
-        street: ['', Validators.required]
-      })
-    });
 
   }
 

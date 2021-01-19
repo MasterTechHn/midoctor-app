@@ -6,25 +6,22 @@
           <mat-form-field class="postulan-form-box">
             <mat-label> Nombres: </mat-label>
             <input matInput type="text" formControlName="name" placeholder="Debería contener ambos nombres." required>
-            <mat-error *ngIf="hasError('name', 'required')">El nombre es requerido.</mat-error>
+            <mat-error *ngIf="hasError('name', 'required')">Los campos marcados * son requeridos.</mat-error>
           </mat-form-field>
 
           <mat-form-field class="postulan-form-box">
             <mat-label> Apellidos: </mat-label>
             <input matInput type="text" formControlName="lastname" placeholder="Debería contener ambos apellidos." required>
-            <mat-error *ngIf="hasError('lastname', 'required')">El apellido es requerido.</mat-error>
           </mat-form-field>
 
           <mat-form-field class="postulan-form-box">
             <mat-label> Especialidad: </mat-label>
             <input matInput type="text" formControlName="speciality" placeholder="Especialidad en el área medica." required>
-            <mat-error *ngIf="hasError('speciality', 'required')">La especialidad es requerida.</mat-error>
           </mat-form-field>
 
           <mat-form-field class="postulan-form-box">
             <mat-label> Correo:  </mat-label>
             <input matInput type="email" formControlName="email" name="email" placeholder="Correo electrónico personal" required>
-            <mat-error *ngIf="hasError('email', 'required')">El correo es requerido.</mat-error>
             <mat-error *ngIf="hasError('email', 'email')">Formato incorrecto.</mat-error>
           </mat-form-field>
 
@@ -39,7 +36,6 @@
             <mat-form-field class="postulan-form-box">
               <mat-label> Pais: </mat-label>
               <input matInput type="text" formControlName="country" placeholder="Honduras" required>
-              <!-- <mat-error *ngIf="hasError('country', 'required')">El país es requerido.</mat-error> -->
             </mat-form-field>
 
             <mat-form-field class="postulan-form-box">

@@ -32,3 +32,7 @@
   flex-direction: row;
   width: 50%;
 }
+
+.postulan-form-button-container [type="button"]{
+  transition: ease 0.8s;
+}
