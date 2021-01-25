@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, retry, map, tap } from 'rxjs/operators';
 
-import { Postulant } from '../interfaces/postulant';
+import { Postulant } from '../models/postulant';
 
 @Injectable({
   providedIn: 'root'

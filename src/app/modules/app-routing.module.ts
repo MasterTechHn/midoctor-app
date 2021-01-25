@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { PostulantComponent } from '../postulant/postulant.component';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
-import { MedPortalComponent } from '../medPortal/med-portal/med-portal.component';
+import { MedPortalComponent } from '../app-medportal/med-portal.component';
 
 const routes: Routes = [{ 
   path: '', redirectTo: '/index', pathMatch: 'full' 
