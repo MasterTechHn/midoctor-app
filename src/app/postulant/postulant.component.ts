@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { PostulantService } from '../services/postulant.service';
-import { Postulant } from '../interfaces/postulant';
+import { Postulant } from '../models/postulant';
 import { ModalRequestComponent } from '../modal-request/modal-request.component'
 
 @Component({

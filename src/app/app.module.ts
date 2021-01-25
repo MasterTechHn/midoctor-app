@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { PostulantComponent } from './postulant/postulant.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ModalRequestComponent } from './modal-request/modal-request.component';
+import { MedPortalComponent } from './medPortal/med-portal/med-portal.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ModalRequestComponent } from './modal-request/modal-request.component';
     FooterComponent,
     PostulantComponent,
     LandingPageComponent,
-    ModalRequestComponent
+    ModalRequestComponent,
+    MedPortalComponent
   ],
   imports: [
     BrowserModule,
