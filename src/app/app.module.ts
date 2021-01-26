@@ -5,6 +5,7 @@ import { AppRoutingModule } from './modules/app-routing.module';
 import { AppMaterialModule } from './modules/app-material.module';
 import { AppMedportalModule } from './app-medportal/app-medportal.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +31,8 @@ import { ModalRequestComponent } from './modal-request/modal-request.component';
     BrowserAnimationsModule,
     AppMaterialModule,
     AppMedportalModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./med-portal-perfil.component.css']
 })
 export class MedPortalPerfilComponent implements OnInit {
+  doctor = {
+    name: 'Hector Manuel',
+    lastname: 'Lainez Chavarria'
+  }
   constructor() { }
 
   ngOnInit(): void {

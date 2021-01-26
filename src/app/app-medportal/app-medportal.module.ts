@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from '../modules/app-routing.module';
 import { AppMaterialModule } from '../modules/app-material.module';
 import { MedPortalComponent } from './med-portal.component';
@@ -17,7 +18,8 @@ import { AgendaComponent } from './agenda/agenda.component';
   imports: [
     CommonModule,
     AppRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    FlexLayoutModule
   ]
 })
 export class AppMedportalModule { }

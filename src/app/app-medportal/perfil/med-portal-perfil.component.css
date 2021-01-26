@@ -1,7 +1,10 @@
 
 .perfil-container {
-  height: 25%;
-  width: auto;
-  margin: 10 10;
-  padding: 15 15;
+  height: auto;
+  width: 100%;
+  padding: 15px 15px;
+}
+
+mat-card {
+  min-width: 350px;
 }
