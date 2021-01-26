@@ -6,7 +6,7 @@
     <mat-nav-list>
       <mat-list-item>
           <mat-icon matListIcon>face</mat-icon>
-          <h3 matLine> Perfil </h3>
+          <a routerLink="/med-portal/perfil">Perfil</a>
       </mat-list-item>
 
       <mat-list-item>
@@ -39,15 +39,15 @@
               Menu
               <mat-icon>menu</mat-icon>
           </button>
-          <button type="button" mat-button>
-              Cerrar Sesion
+          <button type="button" mat-button routerLink="/index">
+              Cerrar Session
               <mat-icon>input</mat-icon>
           </button>          
       </mat-toolbar-row>
     </mat-toolbar>
 
     <div class="example-sidenav-content">
-      
+        <router-outlet></router-outlet>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

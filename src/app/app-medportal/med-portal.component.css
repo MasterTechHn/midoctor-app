@@ -19,3 +19,8 @@
 .med-portal-sidenva-content{
   display: flex;
 }
+
+mat-nav-list a{
+    text-decoration: none;
+    margin-left: 10px;
+}
