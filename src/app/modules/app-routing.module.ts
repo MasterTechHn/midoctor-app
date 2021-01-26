@@ -5,6 +5,7 @@ import { PostulantComponent } from '../postulant/postulant.component';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
 import { MedPortalComponent } from '../app-medportal/med-portal.component';
 import { MedPortalPerfilComponent } from '../app-medportal/perfil/med-portal-perfil.component';
+import { AgendaComponent } from '../app-medportal/agenda/agenda.component';
 
 const routes: Routes = [{ 
   path: '', redirectTo: '/index', pathMatch: 'full' 
@@ -22,6 +23,10 @@ const routes: Routes = [{
     {
       path: 'perfil',
       component: MedPortalPerfilComponent
+    },
+    {
+      path: 'agenda',
+      component: AgendaComponent
     }
   ]
 }];

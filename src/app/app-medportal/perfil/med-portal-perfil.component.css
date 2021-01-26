@@ -1,3 +1,7 @@
-* {
-  background-color: #00bcd4;   
+
+.perfil-container {
+  height: 25%;
+  width: auto;
+  margin: 10 10;
+  padding: 15 15;
 }
