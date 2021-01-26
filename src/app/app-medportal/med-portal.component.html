@@ -1,19 +1,53 @@
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="push">
-    <ul>
-      <li>
-        Perfil
-        <button type="button" mat-icon-button class="example-icon">
-          <mat-icon>face</mat-icon>
-        </button>
-      </li>
-    </ul>
+<mat-drawer-container class="example-container">
+  <mat-drawer 
+    #drawer 
+    class="example-sidenav" 
+    mode="push">
+    <mat-nav-list>
+      <mat-list-item>
+          <mat-icon matListIcon>face</mat-icon>
+          <h3 matLine> Perfil </h3>
+      </mat-list-item>
+
+      <mat-list-item>
+          <mat-icon matListIcon>pending_actions</mat-icon>
+          <h3 matLine> Agenda </h3>
+      </mat-list-item>
+
+      <mat-list-item>
+          <mat-icon matListIcon>contacts</mat-icon>
+          <h3 matLine> Pacientes </h3>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon matListIcon>burst_mode</mat-icon>
+        <h3 matLine> Galeria </h3>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon matListIcon>notification_important</mat-icon>
+        <h3 matLine> Notificaciones </h3>
+      </mat-list-item>
+    </mat-nav-list>
   </mat-drawer>
   
-  <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
-  </div>
-  
+  <mat-drawer-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+          <span class="example-spacer"></span>
+          <button type="button" mat-button (click)="drawer.toggle()">
+              Menu
+              <mat-icon>menu</mat-icon>
+          </button>
+          <button type="button" mat-button>
+              Cerrar Sesion
+              <mat-icon>input</mat-icon>
+          </button>          
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="example-sidenav-content">
+      
+    </div>
+  </mat-drawer-content>
 </mat-drawer-container>

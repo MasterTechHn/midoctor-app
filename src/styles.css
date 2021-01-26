@@ -4,24 +4,28 @@ html, body { height: 100%; background-color: #f2f2f2 ; font-size: 1rem; font-wei
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .main-container {
-    height: auto;
-    display: flex;
-    /* padding-top: 75px; */
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
+  height: auto;
+  display: flex;
+  /* padding-top: 75px; */
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
   
-  .main-hero {
-    justify-content: center;
-  }
+.main-hero {
+  justify-content: center;
+}
   
-  .container-box {
-    width: auto;
-    height: 55px;
-    border: solid 1px;
-    margin: 5px 10px;
-    padding: 25px 25px;
-    box-shadow: 5px 10px #888888;
-  }
+.container-box {
+  width: auto;
+  height: 55px;
+  border: solid 1px;
+  margin: 5px 10px;
+  padding: 25px 25px;
+  box-shadow: 5px 10px #888888;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
