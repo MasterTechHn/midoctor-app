@@ -1,5 +1,11 @@
 <mat-card>
   <mat-card-title>Datos de Perfil</mat-card-title>
+    <div *ngIf="!doctor.sex">
+      <img mat-card-sm-image alt="avatar" class="docto-avatar" src="../../../assets/img/docto-female-avatar.jpg">
+    </div>
+    <div *ngIf="doctor.sex">
+      <img mat-card-sm-image alt="avatar" class="docto-avatar" src="../../../assets/img/docto-avatar.jpg">
+    </div>
   <mat-card-content class="perfil-container">
     <div fxLayout="row" fxLayoutAlign="space-around start">
       <div fxFlex="50">
@@ -10,6 +16,68 @@
       <div fxFlex="50">
         <mat-label>Apellido </mat-label>
         <h3>{{doctor.lastname}}</h3>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-around start">
+      <div fxFlex="50">
+        <mat-label>Correo</mat-label>
+        <mat-icon>email_outline</mat-icon>
+        <h3>{{doctor.email}}</h3>
+      </div>
+        
+      <div fxFlex="50">
+        <mat-label>Telefono </mat-label>
+        <mat-icon>phone</mat-icon>
+        <h3>{{doctor.phone}}</h3>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+      <mat-card-subtitle>Informacion Academica</mat-card-subtitle>
+    </div>
+    
+    <div fxLayout="row" fxLayoutAlign="space-around start">
+       <div fxFlex="30">
+        <mat-label>Especialidad</mat-label>
+        <mat-icon>grade</mat-icon>
+        <h3>{{doctor.speciality}}</h3>
+      </div>
+
+      <div fxFlex="70">
+        <div fxLayout="column" fxLayoutAlign="space-around start">
+            <div fxFlex="20">
+              <mat-label>Experiancia</mat-label>
+              <mat-icon>pending</mat-icon>
+            </div>
+            <div fxFlex="80" class="perfil-textarea">
+              <textarea matIntput readonly>{{doctor.experience}}</textarea>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+      <mat-card-subtitle>Direccion</mat-card-subtitle>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-around start">
+      <div fxFlex="30">
+        <mat-label>Pais</mat-label>
+        <mat-icon>place</mat-icon>
+        <h3>{{doctor.address.country}}</h3>
+      </div>
+
+      <div fxFlex="30">
+        <mat-label>Ciudad</mat-label>
+        <mat-icon>location_city</mat-icon>
+        <h3>{{doctor.address.city}}</h3>
+      </div>
+
+      <div fxFlex="40">
+        <mat-label>Direccion completa</mat-label>
+        <mat-icon>add_road</mat-icon>
+        <h3>{{doctor.address.street}}</h3>
       </div>
     </div>
   </mat-card-content>
