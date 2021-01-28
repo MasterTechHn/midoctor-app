@@ -8,6 +8,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MatListModule } from '@angular/material/list';
     MatDialogModule,
     MatCardModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule
   ],
   exports: [
     MatButtonModule,
@@ -30,7 +32,8 @@ import { MatListModule } from '@angular/material/list';
     MatDialogModule,
     MatCardModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule
   ]
 })
 export class AppMaterialModule { }

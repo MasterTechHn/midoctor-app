@@ -9,10 +9,22 @@
           <a routerLink="/med-portal/perfil">Perfil</a>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>
-          <mat-icon matListIcon>pending_actions</mat-icon>
-          <a routerLink="/med-portal/agenda">Agenda</a>
-      </mat-list-item>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>pending_actions</mat-icon>
+            <p>Agenda</p>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list-item>
+          <mat-icon matListIcon>calendar_today</mat-icon>
+          <a routerLink="/med-portal/agenda/schedule">Calendario</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListIcon>settings</mat-icon>
+          <a routerLink="/med-portal/agenda/config">Configuracion</a>
+          </mat-list-item>
+      </mat-expansion-panel>
       <mat-divider></mat-divider>
       <mat-list-item>
           <mat-icon matListIcon>contacts</mat-icon>

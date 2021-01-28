@@ -5,7 +5,8 @@ import { PostulantComponent } from '../postulant/postulant.component';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
 import { MedPortalComponent } from '../app-medportal/med-portal.component';
 import { MedPortalPerfilComponent } from '../app-medportal/perfil/med-portal-perfil.component';
-import { AgendaComponent } from '../app-medportal/agenda/agenda.component';
+import { AgendaScheduleComponent } from '../app-medportal/agenda/agenda-schedule/agenda-schedule.component';
+import { AgendaConfigurationComponent } from '../app-medportal/agenda/agenda-configuration/agenda-configuration.component';
 
 const routes: Routes = [{ 
   path: '', redirectTo: '/index', pathMatch: 'full' 
@@ -26,7 +27,16 @@ const routes: Routes = [{
     },
     {
       path: 'agenda',
-      component: AgendaComponent
+      children: [
+        {
+          path: 'schedule',
+          component: AgendaScheduleComponent
+        },
+        {
+          path: 'config',
+          component: AgendaConfigurationComponent
+        }
+      ]
     }
   ]
 }];

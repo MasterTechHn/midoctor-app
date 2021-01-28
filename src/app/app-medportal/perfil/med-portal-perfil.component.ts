@@ -23,9 +23,15 @@ export class MedPortalPerfilComponent implements OnInit {
     speciality: 'medico cirujano',
     experience: 'Director colegio Medico Puerto Cortes.'
   }
+
+  showEditInfo = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleEditContainer(): void{
+    this.showEditInfo = !this.showEditInfo;
   }
 
 }

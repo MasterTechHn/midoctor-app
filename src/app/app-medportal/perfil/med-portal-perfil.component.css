@@ -1,14 +1,22 @@
+h3{
+  font-weight: lighter;
+}
+
+.med-portal-container {
+  /* width: 100%; */
+  min-width: 535px;
+}
 
 .perfil-container {
   height: auto;
-  min-width: 550px;
+  /* min-width: 550px; */
   padding: 15px 15px;
 }
 
 .docto-avatar{
   vertical-align: text-top;
-  width: 55px;
-  height: 60px;
+  width: 77px;
+  height: 80px;
   margin-left: 1em;
   border-radius: 50%;
 }
@@ -22,11 +30,25 @@ textarea {
   box-shadow: 1px 1px rgba(0, 0, 0, 0.6);
 }
 
+.edit-container-show {
+  width: auto;
+  display: flex;
+  /* margin-left: calc(5vh - 0em); */
+  /* transition: ease 0.8s; */
+  transition: ease-in 5s;
+}
+
+.edit-container-hide {
+  display: none;
+  transition: ease-out 5s;
+}
+
 mat-card {
   overflow-wrap: break-word;
 }
 
 mat-icon {
+  color: #69d9e7;
   position: absolute;
   padding: 1px 1px;
   margin: 1px 2px;
