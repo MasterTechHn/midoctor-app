@@ -29,7 +29,7 @@ mat-nav-list a{
   color: #69d9e7;
 }
 
-.mat-expansion-panel, .mat-icon {
+.mat-expansion-panel .mat-icon {
   color: #69d9e7;
 }
 
@@ -42,4 +42,3 @@ mat-nav-list a{
   margin: 0 0 0px;
   font-size: 16px;
 }
-

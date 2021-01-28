@@ -1,0 +1,24 @@
+.agenda-config-content {
+  margin: 10px 0px;
+  min-width: calc(190vh - 0em);
+}
+
+.example {
+  min-height: 250px;
+  border-radius: 3px;
+  /* text-align: center; */
+  display: flex;
+  justify-content: center;
+}
+
+.mat-card [type="number"] {
+    max-width: 50px;
+}
+
+.mat-card [type="tel"] {
+    max-width: 100px;
+}
+
+input {
+  font-weight: lighter;
+}

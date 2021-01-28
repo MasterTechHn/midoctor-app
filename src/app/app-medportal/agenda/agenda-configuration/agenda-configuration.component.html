@@ -1,1 +1,57 @@
-<p>agenda-configuration works!</p>
+<div fxLayout="row" fxLayoutAlign="space-around strech" class="agenda-config-content">    
+  <div fxFlex="50" class="example">
+    <mat-card>
+       <mat-card-title>Configuracion de Agendas</mat-card-title>
+       <mat-card-content>
+         <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxFlex="40">
+            <mat-label>Alias</mat-label>
+            <br/>
+            <input matInput type="text" placeholder="Horario de día">
+          </div>
+          <div fxFlex="40">
+            <mat-label>Costo por Consulta</mat-label>
+            <br/>
+            <input matInput type="number" placeholder="500lp">
+          </div>
+         </div>
+         <br/>
+         <mat-card-subtitle>Lugar de atencion</mat-card-subtitle>
+         <div fxLayout="row" fxLayoutAlign="space-around center">
+          <div fxFlex="30">
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" placeholder="Hospital Regional">
+          </div>
+
+          <div fxFlex="30">
+            <mat-label>Direccion</mat-label>
+            <input matInput type="text" placeholder="bolevard del norte.">
+          </div>
+
+          <div fxFlex="30">
+            <mat-label>Telefono</mat-label>
+            <br/>
+            <input matInput type="tel" placeholder="Tel:25500000">
+          </div>
+         </div>
+
+         <br/>
+         <div fxLayout="row" fxLayoutAlign="start">
+            <mat-form-field>
+               <mat-label>O quizas trabajes en...</mat-label>
+               <mat-select [disabled]="places.length == 0">
+                <mat-option 
+                  *ngFor="let place of places"
+                  [value]="place.name">
+                    {{place.name}}
+                </mat-option>
+               </mat-select>
+            </mat-form-field>
+          
+         </div>
+         
+       </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="40" class="example" style="background-color:brown">2</div>
+</div>
