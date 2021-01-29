@@ -21,4 +21,16 @@
 
 input {
   font-weight: lighter;
+  border-bottom: dotted 1px #69d9e7;
 }
+
+.workdays-container {
+    max-width: 480px;
+    height: 250px;
+    overflow-y: scroll;
+}
+
+/* .day-container {
+  max-width: 50px;
+  background-color: rgb(147, 147, 147);
+} */

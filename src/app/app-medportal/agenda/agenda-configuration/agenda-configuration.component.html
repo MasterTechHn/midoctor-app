@@ -29,16 +29,16 @@
           </div>
 
           <div fxFlex="30">
-            <mat-label>Telefono</mat-label>
-            <br/>
-            <input matInput type="tel" placeholder="Tel:25500000">
+              <mat-label>Telefono</mat-label>
+              <br/>
+              <input matInput type="tel" placeholder="Tel:25500000">
           </div>
          </div>
 
          <br/>
-         <div fxLayout="row" fxLayoutAlign="start">
+         <div fxLayout="row" fxLayoutAlign="start start">
             <mat-form-field>
-               <mat-label>O quizas trabajes en...</mat-label>
+               <mat-label>quizás trabajes en...</mat-label>
                <mat-select [disabled]="places.length == 0">
                 <mat-option 
                   *ngFor="let place of places"
@@ -47,9 +47,31 @@
                 </mat-option>
                </mat-select>
             </mat-form-field>
-          
          </div>
-         
+
+         <mat-card-subtitle>Horario de Atencion</mat-card-subtitle>
+         <div fxLayout="row" fxLayoutAlign="start">
+           <div>
+            <div fxLayout="row">
+              <div class="workdays-container">
+                <table mat-table [dataSource]="dataSource">
+                  <ng-container matColumnDef="{{col}}" *ngFor="let col of displayedColumns">
+                    <th mat-header-cell *matHeaderCellDef>
+                      {{col}}
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        <mat-label>{{element.label}}</mat-label>
+                    </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>
+            </div>
+             <!-- <mat-slide-toggle [(ngModel)]="isChecked">Slide Toggle Checked: {{isChecked}}</mat-slide-toggle> -->
+           </div>
+         </div>
+
        </mat-card-content>
     </mat-card>
   </div>
