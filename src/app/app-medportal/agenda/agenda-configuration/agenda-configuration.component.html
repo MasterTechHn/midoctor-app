@@ -55,16 +55,16 @@
             <div fxLayout="row">
               <div class="workdays-container">
                 <table mat-table [dataSource]="dataSource">
-                  <ng-container matColumnDef="{{col}}" *ngFor="let col of displayedColumns">
-                    <th mat-header-cell *matHeaderCellDef>
-                      {{col}}
-                    </th>
-                    <td mat-cell *matCellDef="let element">
-                        <mat-label>{{element.label}}</mat-label>
-                    </td>
-                  </ng-container>
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <ng-container matColumnDef="{{col}}" *ngFor="let col of displayedColumns">
+                        <th mat-header-cell *matHeaderCellDef>
+                            {{col}}
+                        </th>
+                        <td mat-cell *matCellDef="let element" (click)="selectedHour($event, element)">
+                            <mat-label>{{element.id}}</mat-label>                        
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
               </div>
             </div>
@@ -77,3 +77,17 @@
   </div>
   <div fxFlex="40" class="example" style="background-color:brown">2</div>
 </div>
+
+
+<!-- <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="{{col}}" *ngFor="let col of displayedColumns">
+          <th mat-header-cell *matHeaderCellDef>
+            {{col}}
+          </th>
+          <td mat-cell *matCellDef="let element">
+              <mat-label>{{element[col]}}</mat-label>                        
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table> -->
