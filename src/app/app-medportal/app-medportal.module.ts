@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from '../modules/app-routing.module';
 import { AppMaterialModule } from '../modules/app-material.module';
@@ -19,6 +21,9 @@ import { AgendaScheduleComponent } from './agenda/agenda-schedule/agenda-schedul
   ],
   imports: [
     CommonModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     AppMaterialModule,
     FlexLayoutModule

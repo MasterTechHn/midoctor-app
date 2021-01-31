@@ -59,3 +59,20 @@ input {
   margin-bottom: 0.2em;
   text-align: left;
 }
+
+.agendas-container {
+  max-height: 250px;
+}
+
+.agenda-content {
+  margin-bottom: 0.5em;
+}
+
+.bad-icon {
+  font-size: 4em;
+}
+
+.edit-button {
+  color: #ffff;
+  background-color: rgb(250, 186, 67);
+}
