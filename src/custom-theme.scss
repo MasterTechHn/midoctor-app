@@ -20,6 +20,9 @@ $midoctor-app-accent: mat-palette($mat-pink, A200, A100, A400);
 // The warn palette is optional (defaults to red).
 $midoctor-app-warn: mat-palette($mat-red);
 
+// The success palette is optional (default to green)
+$midoctor-app-success: mat-palette($mat-green, A700);
+
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $midoctor-app-theme: mat-light-theme((
@@ -27,6 +30,7 @@ $midoctor-app-theme: mat-light-theme((
     primary: $midoctor-app-primary,
     accent: $midoctor-app-accent,
     warn: $midoctor-app-warn,
+    success: $midoctor-app-success
   )
 ));
 
