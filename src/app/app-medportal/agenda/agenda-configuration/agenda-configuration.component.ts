@@ -1,22 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
-
-export interface AvailableDay {
-  day: String,
-  label: String,
-  value: Boolean,
-  shift: [Number]
-};
-
 export interface Hour {
-  id: Number
-  m: boolean,
-  t: boolean,
-  w: boolean,
-  r: boolean,
-  f: boolean,
-  s: boolean,
-  u: boolean
+  id: number,
+  m?: boolean,
+  t?: boolean,
+  w?: boolean,
+  r?: boolean,
+  f?: boolean,
+  s?: boolean,
+  u?: boolean
 }
 
 export interface Agenda {
@@ -36,16 +28,6 @@ export interface Agenda {
   }
 }
 
-// const WORKSDAY_DATA: AvailableDay[] = [
-//   { day: 'm', label: 'Lunes', value: false , shift: [1] },
-//   { day: 't', label: 'Martes', value: false, shift: [1] },
-//   { day: 'w', label: 'Miercoles', value: false, shift: [1] },
-//   { day: 'r', label: 'Jueves', value: false, shift: [1] },
-//   { day: 'f', label: 'Viernes', value: false, shift: [1] },
-//   { day: 's', label: 'Sabado', value: false, shift: [1] },
-//   { day: 'u', label: 'Domingo', value: false, shift: [1] }
-// ];
-
 const HOUR_DATA: Hour[] = [];
 
 @Component({
@@ -55,8 +37,6 @@ const HOUR_DATA: Hour[] = [];
 })
 export class AgendaConfigurationComponent implements OnInit {
 
-  // displayedColumns = ['Dia', 
-  //   '1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
   displayedColumns = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
   dataSource: Hour[] = [];
 
@@ -68,19 +48,10 @@ export class AgendaConfigurationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // HOUR_DATA.forEach(hour => {
-    //   for (let i = 1; i <= 24; i++) {
-    //     hour.id = i;
-    //   }
-    // });
 
     this.initHours();
   }
-
-  addHouronClick(): void{
-    
-  }
-
+  
   initHours(): void {
     for (let i = 1; i <= 24; i++) {
       let hour: Hour = {
@@ -100,8 +71,9 @@ export class AgendaConfigurationComponent implements OnInit {
     this.dataSource = HOUR_DATA;
   }
 
-  selectedHour(event: any, hour: Hour): void{
-    window.alert(hour.id);
+  selectedMhour(event: any, hour: Hour): void{
+    hour.m = !hour.m;
+    window.alert(`${hour.id} ${hour.m}`);
   }
 
 }

@@ -54,18 +54,27 @@
            <div>
             <div fxLayout="row">
               <div class="workdays-container">
-                <table mat-table [dataSource]="dataSource">
-                    <ng-container matColumnDef="{{col}}" *ngFor="let col of displayedColumns">
-                        <th mat-header-cell *matHeaderCellDef>
-                            {{col}}
-                        </th>
-                        <td mat-cell *matCellDef="let element" (click)="selectedHour($event, element)">
-                            <mat-label>{{element.id}}</mat-label>                        
-                        </td>
-                    </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>
+                <div fxFlex="auto">
+                  <mat-label class="workdays-header-container">Hora</mat-label>
+                  <div *ngFor="let workday of dataSource;" class="hour-container">
+                      {{workday.id}}
+                  </div>
+                </div>
+
+                <div fxFlex="auto">
+                    <mat-label class="workdays-header-container">Lunes</mat-label>
+                    <div *ngFor="let workday of dataSource;" (click)="selectedMhour($event, workday)"
+                      [ngClass]="{'day-container': !workday.m, 'day-container-selected': workday.m}">
+                        <!-- {{workday.m}} -->
+                    </div>
+                </div>
+
+                <div fxFlex="auto">
+                    <mat-label class="workdays-header-container">Martes</mat-label>
+                    <div *ngFor="let workday of dataSource;" class="day-container">
+                        {{workday.t}}
+                    </div>
+                </div>
               </div>
             </div>
              <!-- <mat-slide-toggle [(ngModel)]="isChecked">Slide Toggle Checked: {{isChecked}}</mat-slide-toggle> -->

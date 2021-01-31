@@ -30,7 +30,29 @@ input {
     overflow-y: scroll;
 }
 
-/* .day-container {
-  max-width: 50px;
-  background-color: rgb(147, 147, 147);
-} */
+.workdays-header-container {
+  margin-right: 5px;
+}
+
+.day-container {
+  width: 31px;
+  height: 20px;
+  background-color: rgb(218, 218, 218);
+  text-align: center;
+  margin-bottom: 0.2em;
+  border-radius: 2px;
+}
+
+.day-container-selected {
+  width: 31px;
+  height: 20px;
+  background-color: forestgreen;
+  text-align: center;
+  margin-bottom: 0.2em;
+  border-radius: 2px;
+}
+
+.hour-container {
+  margin-bottom: 0.2em;
+  text-align: center;
+}
