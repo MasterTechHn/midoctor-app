@@ -39,6 +39,7 @@ input {
   height: 20px;
   background-color: rgb(218, 218, 218);
   text-align: center;
+  margin-left: 0.2em;
   margin-bottom: 0.2em;
   border-radius: 2px;
 }
@@ -48,11 +49,13 @@ input {
   height: 20px;
   background-color: forestgreen;
   text-align: center;
+  margin-left: 0.2em;
   margin-bottom: 0.2em;
   border-radius: 2px;
 }
 
 .hour-container {
+  margin-right: 0.5em;
   margin-bottom: 0.2em;
-  text-align: center;
+  text-align: left;
 }

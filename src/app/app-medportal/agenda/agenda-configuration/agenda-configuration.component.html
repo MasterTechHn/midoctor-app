@@ -38,12 +38,12 @@
          <br/>
          <div fxLayout="row" fxLayoutAlign="start start">
             <mat-form-field>
-               <mat-label>quizás trabajes en...</mat-label>
-               <mat-select [disabled]="places.length == 0">
+               <mat-label>Intervalo entre citas</mat-label>
+               <mat-select>
                 <mat-option 
-                  *ngFor="let place of places"
-                  [value]="place.name">
-                    {{place.name}}
+                  *ngFor="let i of interval"
+                  [value]="1">
+                    {{i.label}}
                 </mat-option>
                </mat-select>
             </mat-form-field>
@@ -56,8 +56,8 @@
               <div class="workdays-container">
                 <div fxFlex="auto">
                   <mat-label class="workdays-header-container">Hora</mat-label>
-                  <div *ngFor="let workday of dataSource;" class="hour-container">
-                      {{workday.id}}
+                  <div *ngFor="let hour of dataSource;" class="hour-container">
+                      {{hour.label}}
                   </div>
                 </div>
 
@@ -65,14 +65,48 @@
                     <mat-label class="workdays-header-container">Lunes</mat-label>
                     <div *ngFor="let workday of dataSource;" (click)="selectedMhour($event, workday)"
                       [ngClass]="{'day-container': !workday.m, 'day-container-selected': workday.m}">
-                        <!-- {{workday.m}} -->
                     </div>
                 </div>
 
                 <div fxFlex="auto">
                     <mat-label class="workdays-header-container">Martes</mat-label>
-                    <div *ngFor="let workday of dataSource;" class="day-container">
-                        {{workday.t}}
+                    <div *ngFor="let workday of dataSource;" (click)="selectedThour($event, workday)"
+                      [ngClass]="{'day-container': !workday.t, 'day-container-selected': workday.t}">
+                    </div>
+                </div>
+
+                <div fxFlex="auto">
+                    <mat-label class="workdays-header-container">Miercoles</mat-label>
+                    <div *ngFor="let workday of dataSource;" (click)="selectedWhour($event, workday)"
+                      [ngClass]="{'day-container': !workday.w, 'day-container-selected': workday.w}">
+                    </div>
+                </div>
+
+                <div fxFlex="auto">
+                    <mat-label class="workdays-header-container">Jueves</mat-label>
+                    <div *ngFor="let workday of dataSource;" (click)="selectedRhour($event, workday)"
+                      [ngClass]="{'day-container': !workday.r, 'day-container-selected': workday.r}">
+                    </div>
+                </div>
+
+                <div fxFlex="auto">
+                    <mat-label class="workdays-header-container">Viernes</mat-label>
+                    <div *ngFor="let workday of dataSource;" (click)="selectedFhour($event, workday)"
+                      [ngClass]="{'day-container': !workday.f, 'day-container-selected': workday.f}">
+                    </div>
+                </div>
+
+                <div fxFlex="auto">
+                    <mat-label class="workdays-header-container">Sabado</mat-label>
+                    <div *ngFor="let workday of dataSource;" (click)="selectedShour($event, workday)"
+                      [ngClass]="{'day-container': !workday.s, 'day-container-selected': workday.s}">
+                    </div>
+                </div>
+                
+                <div fxFlex="auto">
+                    <mat-label class="workdays-header-container">Domingo</mat-label>
+                    <div *ngFor="let workday of dataSource;" (click)="selectedUhour($event, workday)"
+                      [ngClass]="{'day-container': !workday.u, 'day-container-selected': workday.u}">
                     </div>
                 </div>
               </div>

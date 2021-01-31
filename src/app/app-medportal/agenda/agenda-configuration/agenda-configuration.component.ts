@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 export interface Hour {
   id: number,
+  label: string
   m?: boolean,
   t?: boolean,
   w?: boolean,
@@ -40,22 +41,40 @@ export class AgendaConfigurationComponent implements OnInit {
   displayedColumns = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
   dataSource: Hour[] = [];
 
-  places = [
-    { name: 'Hospital Mario Catarino Rivas', address: 'bolevard plaza pedregal.', phone: 25505005 },
-    { name: 'Istituto Hondureño de Seguridad Social', address: 'bolevard del norte.', phone: 25543987 }
+  interval = [
+    { label: '30 minutos', value: 1.5 },
+    { label: '1 hora', value: 1 },
+    { label: '1:30', value: 1.5 },
   ];
 
   constructor() { }
 
   ngOnInit(): void {
 
-    this.initHours();
+    this.init24Hours();
+
   }
   
-  initHours(): void {
-    for (let i = 1; i <= 24; i++) {
+  init24Hours(): void {
+    let lb = '';
+    let flb = '';
+    let count = 1;
+    for (let i = 1; i <= 24; i+= 0.5) {
+      if(i > count){
+        if(i >= 10){
+          flb = i.toString().substring(0, 2);
+        }else {
+          flb = i.toString().substring(0, 1);
+        }
+        lb = `${flb}:30`;
+        count ++
+      }else {
+        lb = `${i}:00`;
+      }
+
       let hour: Hour = {
         id: i,
+        label: lb,
         m: false,
         t: false,
         w: false,
@@ -73,7 +92,29 @@ export class AgendaConfigurationComponent implements OnInit {
 
   selectedMhour(event: any, hour: Hour): void{
     hour.m = !hour.m;
-    window.alert(`${hour.id} ${hour.m}`);
   }
 
+  selectedThour(event: any, hour: Hour): void{
+    hour.t = !hour.t;
+  }
+
+  selectedWhour(event: any, hour: Hour): void{
+    hour.w = !hour.w;
+  }
+
+  selectedRhour(event: any, hour: Hour): void{
+    hour.r = !hour.r;
+  }
+
+  selectedFhour(event: any, hour: Hour): void{
+    hour.f = !hour.f;
+  }
+  
+  selectedShour(event: any, hour: Hour): void{
+    hour.s = !hour.s;
+  }
+
+  selectedUhour(event: any, hour: Hour): void{
+    hour.u = !hour.u;
+  }
 }
