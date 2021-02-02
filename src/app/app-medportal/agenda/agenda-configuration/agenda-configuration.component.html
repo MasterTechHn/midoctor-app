@@ -9,7 +9,7 @@
             <mat-label>Alias*</mat-label>
             <br/>
             <input matInput formControlName="alias" type="text" placeholder="Horario de día" required>
-            <mat-error *ngIf="hasError('alias', 'required')">Los campos marcados * son requeridos.</mat-error>
+            <mat-error *ngIf="hasError('alias', 'required')">Los campos * son requeridos.</mat-error>
           </div>
           <div fxFlex="40">
             <mat-label>Costo por Consulta*</mat-label>
@@ -38,17 +38,31 @@
          </div>
 
          <br/>
-         <div fxLayout="row" fxLayoutAlign="start start">
-            <mat-form-field>
-               <mat-label>Intervalo entre citas</mat-label>
-               <mat-select formControlName="intervalSelected">
-                <mat-option 
-                  *ngFor="let i of interval"
-                  [value]="i">
-                    {{i.label}}
-                </mat-option>
-               </mat-select>
-            </mat-form-field>
+         <div fxLayout="row" fxLayoutAlign="start center">
+           <div fxFlex="30">
+             <mat-form-field>
+                <mat-label>Intervalo entre citas</mat-label>
+                <mat-select formControlName="intervalSelected">
+                 <mat-option 
+                   *ngFor="let i of interval"
+                   [value]="i">
+                     {{i.label}}
+                 </mat-option>
+                </mat-select>
+             </mat-form-field>
+           </div>
+
+           <div fxFlex="20" fxFlexOffset="10">
+              <button mat-flat-button class="exception-button" color="primary">
+                Nueva Excepcion
+              </button>
+           </div>
+
+           <div fxFlex="auto" fxFlexOffset="8" class="exception-container">
+            <div *ngFor="let exp of exceptionSource" class="exception-content">
+              {{exp.date}}/{{exp.month}}
+            </div>
+           </div>
          </div>
         </form>
 

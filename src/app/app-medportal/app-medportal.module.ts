@@ -9,6 +9,7 @@ import { MedPortalComponent } from './med-portal.component';
 import { MedPortalPerfilComponent } from './perfil/med-portal-perfil.component';
 import { AgendaConfigurationComponent } from './agenda/agenda-configuration/agenda-configuration.component';
 import { AgendaScheduleComponent } from './agenda/agenda-schedule/agenda-schedule.component';
+import { AgendaExceptionModalComponent } from './agenda/agenda-configuration/agenda-exception-modal/agenda-exception-modal.component';
 
 
 
@@ -17,7 +18,8 @@ import { AgendaScheduleComponent } from './agenda/agenda-schedule/agenda-schedul
     MedPortalComponent,
     MedPortalPerfilComponent,
     AgendaConfigurationComponent,
-    AgendaScheduleComponent
+    AgendaScheduleComponent,
+    AgendaExceptionModalComponent
   ],
   imports: [
     CommonModule,

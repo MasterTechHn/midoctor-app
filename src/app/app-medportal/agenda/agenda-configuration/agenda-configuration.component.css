@@ -21,7 +21,27 @@
 
 input {
   font-weight: lighter;
-  border-bottom: dotted 1px #69d9e7;
+  border-bottom: dotted 1px #00bcd4;
+}
+
+.exception-button {
+  border-radius: 25px;
+  font-size: 12px;
+}
+
+.exception-container {
+  display: flex;
+  overflow-x: scroll;
+  max-width: 150px;
+}
+
+.exception-content {
+  text-align: center;
+  padding: 2px 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: rgb(253, 252, 161);
+  border-radius: 12px;
 }
 
 .workdays-container {

@@ -1,5 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { AgendaExceptionModalComponent } from './agenda-exception-modal/agenda-exception-modal.component';
+
+export interface Exception {
+  alias: string,
+  date: string,
+  month: string,
+  year: string,
+  status: boolean,
+  tipo: string
+}
 
 export interface Hour {
   id: number,
@@ -38,6 +49,7 @@ export interface Interval {
 }
 
 const AGENDAS_DATA: Agenda[] = [];
+const EXCEPTION_DATA: Exception[] = [];
 
 @Component({
   selector: 'app-agenda-configuration',
@@ -46,8 +58,10 @@ const AGENDAS_DATA: Agenda[] = [];
 })
 export class AgendaConfigurationComponent implements OnInit {
 
+  dat: Date = new Date();
   dataSource: Hour[] = [];
   agendaSource: Agenda[] = [];
+  exceptionSource: Exception[] = [];
 
   interval: Interval[] = [
     { label: '30 minutos', value: 1.5 },
@@ -66,10 +80,11 @@ export class AgendaConfigurationComponent implements OnInit {
     intervalSelected: ['']
   });
 
-  constructor(private fb: FormBuilder,) { }
+  constructor(private fb: FormBuilder, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
+    this.initExceotions();
     this.init24Hours();
 
   }
@@ -108,6 +123,23 @@ export class AgendaConfigurationComponent implements OnInit {
     }
 
     // this.dataSource = HOUR_DATA;
+  }
+
+  initExceotions(): void{
+    let exp: Exception = {
+      alias: 'feriado morazanico',
+      date: '15',
+      month: '8',
+      year: this.dat.getFullYear.toString(),
+      status: true,
+      tipo: ''
+    }
+
+    EXCEPTION_DATA.push(exp);
+    EXCEPTION_DATA.push(exp);
+    EXCEPTION_DATA.push(exp);
+
+    this.exceptionSource = EXCEPTION_DATA;
   }
 
   addAgenda(): void{
@@ -171,6 +203,13 @@ export class AgendaConfigurationComponent implements OnInit {
 
   public hasError = (controlName: string, errorName: string) =>{
     return this.agendaForm.controls[controlName].hasError(errorName);
+  }
+
+  openExceptionModal(): void {
+    const dialogRef = this.dialog.open(AgendaExceptionModalComponent, {
+      width: '350px',
+      data: {}
+    });
   }
 
   selectedMhour(event: any, hour: Hour): void{
