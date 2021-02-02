@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Doctor } from '../../models/doctor';
+import { Doctor } from '../models/doctor';
 
 @Component({
   selector: 'med-portal-perfil',

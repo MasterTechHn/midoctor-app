@@ -2,15 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from "@angular/material/dialog";
 import { AgendaExceptionModalComponent } from './agenda-exception-modal/agenda-exception-modal.component';
-
-export interface Exception {
-  alias: string,
-  date: string,
-  month: string,
-  year: string,
-  status: boolean,
-  tipo: string
-}
+import { Exception } from '../../models/exception';
+import { Agenda } from '../../models/agenda';
 
 export interface Hour {
   id: number,
@@ -22,25 +15,6 @@ export interface Hour {
   f?: boolean,
   s?: boolean,
   u?: boolean
-}
-
-export interface Agenda {
-  alias: string,
-  price: number,
-  doctor: string,
-  intervalTime: number,
-  m: number[],
-  t: number[],
-  w: number[],
-  r: number[],
-  f: number[],
-  s: number[],
-  u: number[],
-  place: {
-    name: string,
-    address: string,
-    phone?: number
-  }
 }
 
 export interface Interval {

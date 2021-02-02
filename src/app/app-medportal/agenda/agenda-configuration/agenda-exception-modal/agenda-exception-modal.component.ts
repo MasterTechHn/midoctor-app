@@ -1,14 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-export interface Exception {
-  alias: string,
-  date: string,
-  month: string,
-  year: string,
-  status: boolean,
-  tipo: string
-}
+import { Exception } from '../../../models/exception';
 
 @Component({
   selector: 'app-agenda-exception-modal',
