@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { MatDialog } from "@angular/material/dialog";
 import { AgendaExceptionModalComponent } from './agenda-exception-modal/agenda-exception-modal.component';
 
 export interface Exception {
@@ -63,6 +63,15 @@ export class AgendaConfigurationComponent implements OnInit {
   agendaSource: Agenda[] = [];
   exceptionSource: Exception[] = [];
 
+  newException: Exception = {
+    alias: '',
+    date: '',
+    month: '',
+    year: '',
+    status: true,
+    tipo: ''
+  }
+
   interval: Interval[] = [
     { label: '30 minutos', value: 1.5 },
     { label: '1 hora', value: 1 },
@@ -84,7 +93,7 @@ export class AgendaConfigurationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.initExceotions();
+    this.initExceptions();
     this.init24Hours();
 
   }
@@ -125,7 +134,7 @@ export class AgendaConfigurationComponent implements OnInit {
     // this.dataSource = HOUR_DATA;
   }
 
-  initExceotions(): void{
+  initExceptions(): void{
     let exp: Exception = {
       alias: 'feriado morazanico',
       date: '15',
@@ -135,8 +144,6 @@ export class AgendaConfigurationComponent implements OnInit {
       tipo: ''
     }
 
-    EXCEPTION_DATA.push(exp);
-    EXCEPTION_DATA.push(exp);
     EXCEPTION_DATA.push(exp);
 
     this.exceptionSource = EXCEPTION_DATA;
@@ -207,8 +214,23 @@ export class AgendaConfigurationComponent implements OnInit {
 
   openExceptionModal(): void {
     const dialogRef = this.dialog.open(AgendaExceptionModalComponent, {
-      width: '350px',
-      data: {}
+      width: '300px',
+      data: { 
+        alias: this.newException.alias, 
+        date: this.newException.date, 
+        month: this.newException.month,
+        year: this.newException.year,
+        status: this.newException.status,
+        tipo: this.newException.tipo
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.alias != "" 
+          && result.date != "" 
+            && result.month != ""
+              && result.year != "")
+        this.exceptionSource.push(result)
     });
   }
 

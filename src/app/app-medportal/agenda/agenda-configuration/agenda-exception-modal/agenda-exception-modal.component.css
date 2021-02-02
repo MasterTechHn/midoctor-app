@@ -1,0 +1,16 @@
+h1 {
+    text-align: center;
+}
+
+.string-container {
+    max-width: 120px;
+}
+
+.date-container {
+    max-width: 50px;
+}
+
+.modal-button-container {
+    display: flex;
+    justify-content: center;
+}

@@ -1,1 +1,61 @@
-<p>agenda-exception-modal works!</p>
+<div class="exception-modal-container">
+  <h1 mat-dialog-title>Excepcion</h1>
+  <div mat-dialog-content>
+      <mat-form-field appearance="standard" class="string-container">
+        <mat-label>Alias</mat-label>
+        <input matInput [(ngModel)]="data.alias">
+      </mat-form-field>  
+
+      <div fxLayout="row" fxLayoutAlign="start">
+        <div fxFlex="30">
+          <mat-form-field class="date-container">
+            <mat-label>Fecha</mat-label>
+            <input matInput [(ngModel)]="data.date">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="30">
+          <mat-form-field class="date-container">
+            <mat-label>Mes</mat-label>
+            <input matInput [(ngModel)]="data.month">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="30">
+          <mat-form-field class="date-container">
+            <mat-label>Año</mat-label>
+            <input matInput [(ngModel)]="data.year">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <mat-label>Estado</mat-label>
+      <mat-slide-toggle [(ngModel)]="data.status" color="primary"></mat-slide-toggle>
+
+  </div>
+
+  <div mat-dialog-actions class="modal-button-container">
+    <button mat-button (click)="onClose()">Regresar</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+  
+  <!-- <div mat-dialog-content>
+      <mat-form-field>
+        <mat-label>Alias</mat-label>
+        <input type="text" [(ngModel)]="data.alias">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onClose()">Regresar</button>
+    <button mat-button [mat-dialog-close]="data.alias" cdkFocusInitial>Ok</button>
+  </div> -->
+
