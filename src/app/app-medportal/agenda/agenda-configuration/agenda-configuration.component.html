@@ -6,33 +6,34 @@
          <form [formGroup]="agendaForm">
          <div fxLayout="row" fxLayoutAlign="space-between center">
           <div fxFlex="40">            
-            <mat-label>Alias</mat-label>
+            <mat-label>Alias*</mat-label>
             <br/>
-            <input matInput formControlName="alias" type="text" placeholder="Horario de día">
+            <input matInput formControlName="alias" type="text" placeholder="Horario de día" required>
+            <mat-error *ngIf="hasError('alias', 'required')">Los campos marcados * son requeridos.</mat-error>
           </div>
           <div fxFlex="40">
-            <mat-label>Costo por Consulta</mat-label>
+            <mat-label>Costo por Consulta*</mat-label>
             <br/>
-            <input matInput formControlName="price" type="number" placeholder="500lp">
+            <input matInput formControlName="price" type="number" placeholder="500lp" required>
           </div>
          </div>
          <br/>
          <mat-card-subtitle>Lugar de atencion</mat-card-subtitle>
          <div  formGroupName="address" fxLayout="row" fxLayoutAlign="space-around center">
           <div fxFlex="30">
-            <mat-label>Nombre</mat-label>
-            <input matInput formControlName="name" type="text" placeholder="Hospital Regional">
+            <mat-label>Nombre*</mat-label>
+            <input matInput formControlName="name" type="text" placeholder="Hospital Regional" required>
           </div>
 
           <div fxFlex="30">
-            <mat-label>Direccion</mat-label>
-            <input matInput formControlName="street" type="text" placeholder="bolevard del norte.">
+            <mat-label>Direccion*</mat-label>
+            <input matInput formControlName="street" type="text" placeholder="bolevard del norte." required>
           </div>
 
           <div fxFlex="30">
               <mat-label>Telefono</mat-label>
               <br/>
-              <input matInput formControlName="phone" type="tel" placeholder="Tel:25500000">
+              <input matInput formControlName="phone" type="tel" placeholder="Tel:25500000" minlength="8">
           </div>
          </div>
 
@@ -119,7 +120,7 @@
          <br/>
 
          <div fxLayout="row" fxLayoutAlign="end center">
-            <button mat-fab color="primary" (click)="addAgenda()">
+            <button mat-fab color="primary" [disabled]="!agendaForm.valid" (click)="addAgenda()">
                 <mat-icon>add_task</mat-icon>
             </button>
          </div>
@@ -144,21 +145,21 @@
           <mat-card-title>{{ags.alias}}</mat-card-title>
           <mat-card-content>
             <div fxLayout="row">
-              <div fxFlex="auto">
+              <div fxFlex="10">
                 {{ags.price}} lp.
               </div>
 
-              <div fxFlex="auto">
+              <div fxFlex="auto" fxFlexOffset="10">
                 {{ags.place.name}}
               </div>
 
-              <div fxFlex="auto">
-                <button mat-mini-fab color="warn" >
+              <div fxFlex="10">
+                <button mat-mini-fab color="warn" (click)="removeAgenda($event, ags)">
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
 
-              <div fxFlex="auto">
+              <div fxFlex="10">
                 <button mat-mini-fab class="edit-button" >
                   <mat-icon>mode_edit_outline</mat-icon>
                 </button>

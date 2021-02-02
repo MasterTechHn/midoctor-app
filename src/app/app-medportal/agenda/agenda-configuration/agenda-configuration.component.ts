@@ -37,8 +37,6 @@ export interface Interval {
   value: number
 }
 
-// const HOUR_DATA: Hour[] = [];
-
 const AGENDAS_DATA: Agenda[] = [];
 
 @Component({
@@ -48,7 +46,6 @@ const AGENDAS_DATA: Agenda[] = [];
 })
 export class AgendaConfigurationComponent implements OnInit {
 
-  displayedColumns = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
   dataSource: Hour[] = [];
   agendaSource: Agenda[] = [];
 
@@ -59,12 +56,12 @@ export class AgendaConfigurationComponent implements OnInit {
   ];
 
   agendaForm = this.fb.group({
-    alias: [''],
-    price: [''],
+    alias: ['', Validators.required],
+    price: ['', [Validators.required, Validators.minLength(2)]],
     address: this.fb.group({
-      name: [''],
-      street: [''],
-      phone: ['']
+      name: ['', Validators.required],
+      street: ['', Validators.required],
+      phone: ['', [Validators.minLength(8)]]
     }),
     intervalSelected: ['']
   });
@@ -165,6 +162,15 @@ export class AgendaConfigurationComponent implements OnInit {
     this.dataSource = [];
     this.init24Hours();
     this.agendaForm.reset();
+  }
+
+  removeAgenda(event: any, agenda: Agenda): void {
+    let ix = this.agendaSource.indexOf(agenda);
+    if(ix > -1) this.agendaSource.splice(ix, 1);
+  }
+
+  public hasError = (controlName: string, errorName: string) =>{
+    return this.agendaForm.controls[controlName].hasError(errorName);
   }
 
   selectedMhour(event: any, hour: Hour): void{
