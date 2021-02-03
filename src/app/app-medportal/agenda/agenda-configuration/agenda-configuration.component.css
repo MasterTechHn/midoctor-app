@@ -1,3 +1,7 @@
+p {
+  display: inline-block;
+}
+
 .agenda-config-content {
   margin: 10px 0px;
   min-width: calc(190vh - 0em);

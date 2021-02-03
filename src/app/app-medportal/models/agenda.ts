@@ -1,3 +1,5 @@
+import { Exception } from './exception';
+
 export interface Agenda {
   alias: string,
   price: number,
@@ -14,5 +16,6 @@ export interface Agenda {
     name: string,
     address: string,
     phone?: number
-  }
+  },
+  exceptions: Exception[]
 }

@@ -159,7 +159,7 @@
           <mat-card-title>{{ags.alias}}</mat-card-title>
           <mat-card-content>
             <div fxLayout="row">
-              <div fxFlex="10">
+              <div fxFlex="20">
                 {{ags.price}} lp.
               </div>
 
@@ -177,6 +177,16 @@
                 <button mat-mini-fab class="edit-button" >
                   <mat-icon>mode_edit_outline</mat-icon>
                 </button>
+              </div>
+            </div>
+
+            <div fxLayout="row">
+              <div fxFlex="auto">
+                  <mat-card-subtitle>Feriados</mat-card-subtitle>
+                  <p *ngFor="let exp of ags.exceptions" 
+                    [ngClass]="{'exception-content-disable': !exp.status, 'exception-content': exp.status}">
+                    {{exp.date}}/{{exp.month}}
+                  </p>
               </div>
             </div>
           </mat-card-content>

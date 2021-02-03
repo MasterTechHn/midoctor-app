@@ -110,17 +110,15 @@ export class AgendaConfigurationComponent implements OnInit {
 
   initExceptions(): void{
     let exp: Exception = {
-      alias: 'feriado morazanico',
-      date: '15',
-      month: '8',
+      alias: 'dia del trabajador',
+      date: '1',
+      month: '5',
       year: this.dat.getFullYear.toString(),
       status: true,
       tipo: ''
     }
 
-    EXCEPTION_DATA.push(exp);
-
-    this.exceptionSource = EXCEPTION_DATA;
+    this.exceptionSource.push(exp);
   }
 
   addAgenda(): void{
@@ -164,17 +162,19 @@ export class AgendaConfigurationComponent implements OnInit {
         name: this.agendaForm.value.address.name,
         address: this.agendaForm.value.address.street,
         phone: this.agendaForm.value.address.phone
-      }
+      },
+      exceptions: this.exceptionSource
     }
 
     AGENDAS_DATA.push(agenda);
 
     this.agendaSource = AGENDAS_DATA;
 
-    window.alert(`new agenda \n ${agenda}`);
     this.dataSource = [];
-    this.init24Hours();
+    this.exceptionSource = [];
     this.agendaForm.reset();
+    this.init24Hours();
+    this.initExceptions();
   }
 
   removeAgenda(event: any, agenda: Agenda): void {
