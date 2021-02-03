@@ -208,6 +208,29 @@ export class AgendaConfigurationComponent implements OnInit {
     });
   }
 
+  editException(event: any, exp: Exception): void {
+    let indx = this.exceptionSource.indexOf(exp);
+    const dialogRef = this.dialog.open(AgendaExceptionModalComponent, {
+      width: '300px',
+      data: { 
+        alias: exp.alias, 
+        date: exp.date, 
+        month: exp.month,
+        year: exp.year,
+        status: exp.status,
+        tipo: exp.tipo
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.alias != "" 
+          && result.date != "" 
+            && result.month != ""
+              && result.year != "")
+        this.exceptionSource[indx] = result;
+    });
+  }
+
   selectedMhour(event: any, hour: Hour): void{
     hour.m = !hour.m;
   }

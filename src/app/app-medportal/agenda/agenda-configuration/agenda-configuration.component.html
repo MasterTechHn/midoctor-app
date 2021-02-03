@@ -59,7 +59,8 @@
            </div>
 
            <div fxFlex="auto" fxFlexOffset="8" class="exception-container">
-            <div *ngFor="let exp of exceptionSource" class="exception-content">
+            <div *ngFor="let exp of exceptionSource" (click)="editException($event, exp)"
+            [ngClass]="{'exception-content-disable': !exp.status, 'exception-content': exp.status}">
               {{exp.date}}/{{exp.month}}
             </div>
            </div>
@@ -128,7 +129,6 @@
                 </div>
               </div>
             </div>
-             <!-- <mat-slide-toggle [(ngModel)]="isChecked">Slide Toggle Checked: {{isChecked}}</mat-slide-toggle> -->
            </div>
          </div>
          <br/>
