@@ -4,6 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { AgendaExceptionModalComponent } from './agenda-exception-modal/agenda-exception-modal.component';
 import { Exception } from '../../models/exception';
 import { Agenda } from '../../models/agenda';
+import { AgendaService } from '../../services/agenda.service';
 
 export interface Hour {
   id: number,
@@ -37,6 +38,10 @@ export class AgendaConfigurationComponent implements OnInit {
   agendaSource: Agenda[] = [];
   exceptionSource: Exception[] = [];
 
+  doctor = {
+    id: "601b30cf9a2bfd7430f8a917"
+  };
+
   newException: Exception = {
     alias: '',
     date: '',
@@ -63,12 +68,16 @@ export class AgendaConfigurationComponent implements OnInit {
     intervalSelected: ['']
   });
 
-  constructor(private fb: FormBuilder, public dialog: MatDialog) { }
+  constructor(
+    private agendaService: AgendaService,
+    private fb: FormBuilder, 
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
     this.initExceptions();
     this.init24Hours();
+    this.getAgendas();
 
   }
   
@@ -121,6 +130,17 @@ export class AgendaConfigurationComponent implements OnInit {
     this.exceptionSource.push(exp);
   }
 
+  getAgendas(): void{
+    this.agendaService.getAgendas(this.doctor)
+      .subscribe(res => {
+        console.log(res);
+        // this.agendaSource = res.data;
+        this.agendaSource = res.data;
+      }, err => {
+        console.warn(err)
+    });
+  }
+
   addAgenda(): void{
     let monday: number[] = [];
     let tuesday: number[] = [];
@@ -149,7 +169,7 @@ export class AgendaConfigurationComponent implements OnInit {
     const agenda: Agenda = {
       alias: this.agendaForm.value.alias,
       price: this.agendaForm.value.price,
-      doctor: '',
+      doctor: '601b30cf9a2bfd7430f8a917',
       intervalTime: this.agendaForm.value.intervalSelected,
       m: monday,
       t: tuesday,
@@ -158,6 +178,7 @@ export class AgendaConfigurationComponent implements OnInit {
       f: friday,
       s: saturday,
       u: sunday,
+      consultingRoomValidate: false,
       place: {
         name: this.agendaForm.value.address.name,
         address: this.agendaForm.value.address.street,
@@ -166,9 +187,16 @@ export class AgendaConfigurationComponent implements OnInit {
       exceptions: this.exceptionSource
     }
 
-    AGENDAS_DATA.push(agenda);
-
-    this.agendaSource = AGENDAS_DATA;
+    this.agendaService.newAgenda(agenda)
+      .subscribe(res => {
+        debugger;
+        this.agendaSource.push(agenda);
+        console.log(res);
+      }, err => {
+        console.warn(err);
+    });
+      
+    // AGENDAS_DATA.push(agenda);
 
     this.dataSource = [];
     this.exceptionSource = [];

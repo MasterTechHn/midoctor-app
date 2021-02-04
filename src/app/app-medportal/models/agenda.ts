@@ -1,6 +1,7 @@
 import { Exception } from './exception';
 
 export interface Agenda {
+  id?: string
   alias: string,
   price: number,
   doctor: string,
@@ -12,6 +13,7 @@ export interface Agenda {
   f: number[],
   s: number[],
   u: number[],
+  consultingRoomValidate: boolean,
   place: {
     name: string,
     address: string,
