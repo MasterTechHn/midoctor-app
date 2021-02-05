@@ -14,7 +14,7 @@ export interface Agenda {
   s: number[],
   u: number[],
   consultingRoomValidate: boolean,
-  place: {
+  consultingRoom: {
     name: string,
     address: string,
     phone?: number

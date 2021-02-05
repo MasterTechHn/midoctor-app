@@ -52,7 +52,7 @@ export class AgendaConfigurationComponent implements OnInit {
   }
 
   interval: Interval[] = [
-    { label: '30 minutos', value: 1.5 },
+    { label: '30 minutos', value: 0.5 },
     { label: '1 hora', value: 1 },
     { label: '1:30', value: 1.5 },
   ];
@@ -122,19 +122,17 @@ export class AgendaConfigurationComponent implements OnInit {
       alias: 'dia del trabajador',
       date: '1',
       month: '5',
-      year: this.dat.getFullYear.toString(),
+      year: this.dat.getFullYear().toString(),
       status: true,
       tipo: ''
     }
-
     this.exceptionSource.push(exp);
   }
 
   getAgendas(): void{
     this.agendaService.getAgendas(this.doctor)
       .subscribe(res => {
-        console.log(res);
-        // this.agendaSource = res.data;
+        console.warn(res);
         this.agendaSource = res.data;
       }, err => {
         console.warn(err)
@@ -169,8 +167,8 @@ export class AgendaConfigurationComponent implements OnInit {
     const agenda: Agenda = {
       alias: this.agendaForm.value.alias,
       price: this.agendaForm.value.price,
-      doctor: '601b30cf9a2bfd7430f8a917',
-      intervalTime: this.agendaForm.value.intervalSelected,
+      doctor: this.doctor.id,
+      intervalTime: 0.5,
       m: monday,
       t: tuesday,
       w: wednesday,
@@ -179,7 +177,7 @@ export class AgendaConfigurationComponent implements OnInit {
       s: saturday,
       u: sunday,
       consultingRoomValidate: false,
-      place: {
+      consultingRoom: {
         name: this.agendaForm.value.address.name,
         address: this.agendaForm.value.address.street,
         phone: this.agendaForm.value.address.phone
@@ -190,19 +188,18 @@ export class AgendaConfigurationComponent implements OnInit {
     this.agendaService.newAgenda(agenda)
       .subscribe(res => {
         debugger;
-        this.agendaSource.push(agenda);
         console.log(res);
+        this.agendaSource.push(agenda);
+        this.dataSource = [];
+        this.exceptionSource = [];
+        this.agendaForm.reset();
+        this.init24Hours();
+        this.initExceptions();
       }, err => {
         console.warn(err);
     });
       
     // AGENDAS_DATA.push(agenda);
-
-    this.dataSource = [];
-    this.exceptionSource = [];
-    this.agendaForm.reset();
-    this.init24Hours();
-    this.initExceptions();
   }
 
   removeAgenda(event: any, agenda: Agenda): void {
