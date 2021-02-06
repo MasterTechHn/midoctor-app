@@ -3,8 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, retry, map, tap } from 'rxjs/operators';
 
-import { Agenda } from '../models/agenda';
-import { HttpResponse, HttpResponseError } from '../models/httpResponse';
+import { Agenda, AgendaHttpResponse } from '../models/agenda';
 
 @Injectable({
   providedIn: 'root'
@@ -22,15 +21,22 @@ export class AgendaService {
     private http: HttpClient
   ) { }
 
-  getAgendas(doctor: any): Observable<HttpResponse>{
-    return this.http.get<HttpResponse>(this.apiUri + `/byDoctor/${doctor.id}`, this.httpOption)
+  getAgendas(doctor: any): Observable<AgendaHttpResponse>{
+    return this.http.get<AgendaHttpResponse>(this.apiUri + `/byDoctor/${doctor.id}`, this.httpOption)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  newAgenda(agenda: Agenda): Observable<HttpResponse>{
-    return this.http.post<HttpResponse>(this.apiUri, agenda, this.httpOption)
+  newAgenda(agenda: Agenda): Observable<AgendaHttpResponse>{
+    return this.http.post<AgendaHttpResponse>(this.apiUri, agenda, this.httpOption)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  deleteAgenda(agenda: Agenda): Observable<AgendaHttpResponse>{
+    return this.http.delete<AgendaHttpResponse>(this.apiUri + `/${agenda._id}`, this.httpOption)
       .pipe(
         catchError(this.handleError)
       );

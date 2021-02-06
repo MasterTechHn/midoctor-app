@@ -187,8 +187,7 @@ export class AgendaConfigurationComponent implements OnInit {
 
     this.agendaService.newAgenda(agenda)
       .subscribe(res => {
-        debugger;
-        console.log(res);
+        agenda._id = res.data[0]._id;
         this.agendaSource.push(agenda);
         this.dataSource = [];
         this.exceptionSource = [];
@@ -204,7 +203,16 @@ export class AgendaConfigurationComponent implements OnInit {
 
   removeAgenda(event: any, agenda: Agenda): void {
     let ix = this.agendaSource.indexOf(agenda);
-    if(ix > -1) this.agendaSource.splice(ix, 1);
+    console.warn(agenda);
+    if(ix > -1){
+      this.agendaService.deleteAgenda(agenda)
+        .subscribe(res => {
+          console.warn(res);
+          this.agendaSource.splice(ix, 1);
+        }, err => {
+          console.log(err);
+        });
+    }
   }
 
   public hasError = (controlName: string, errorName: string) =>{

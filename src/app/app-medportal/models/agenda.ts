@@ -1,7 +1,7 @@
 import { Exception } from './exception';
 
 export interface Agenda {
-  id?: string
+  _id?: string
   alias: string,
   price: number,
   doctor: string,
@@ -20,4 +20,19 @@ export interface Agenda {
     phone?: number
   },
   exceptions: Exception[]
+}
+
+export interface AgendaHttpResponse {
+  success: boolean,
+  count: number,
+  data: Agenda[]
+}
+
+export interface HttpResponseError {
+  success: boolean,
+  message: string,
+  request: {
+    type: string,
+    catch: string
+  }
 }
