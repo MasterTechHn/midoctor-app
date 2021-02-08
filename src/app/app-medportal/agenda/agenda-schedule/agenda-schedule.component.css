@@ -1,0 +1,8 @@
+.calendar-container {
+  margin: 10px 0px;
+}
+
+.example {
+  display: flex;
+  justify-content: center;
+}

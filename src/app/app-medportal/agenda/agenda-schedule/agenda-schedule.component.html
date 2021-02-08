@@ -1,1 +1,49 @@
-<p>agenda-schedule works!</p>
+<div fxLayout="row" fxLayoutAlign="space-around strech" class="calendar-container">
+  <div fxFlex="auto" class="example">
+    <div *ngIf="agendaSource.length == 0">
+      <mat-card>
+        <mat-card-title>No se encontraron agendas configuradas</mat-card-title>
+        <mat-card-content style="text-align: center">
+          <mat-icon class="bad-icon">mood_bad</mat-icon>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- <div *ngIf="agendaSource.length > 0">
+        <mwl-demo-utils-calendar-header
+          [(view)]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="fetchEvents()"
+          (viewChange)="fetchEvents()">
+        </mwl-demo-utils-calendar-header>
+        
+        <div *ngIf="events$ | async; let events">
+            <div [ngSwitch]="view">
+              <mwl-calendar-month-view
+                *ngSwitchCase="'month'"
+                [viewDate]="viewDate"
+                [events]="events"
+                [activeDayIsOpen]="activeDayIsOpen"
+                (dayClicked)="dayClicked($event.day)"
+                (eventClicked)="eventClicked($event.event)"
+              >
+              </mwl-calendar-month-view>
+              <mwl-calendar-week-view
+                *ngSwitchCase="'week'"
+                [viewDate]="viewDate"
+                [events]="events"
+                (eventClicked)="eventClicked($event.event)"
+              >
+              </mwl-calendar-week-view>
+              <mwl-calendar-day-view
+                *ngSwitchCase="'day'"
+                [viewDate]="viewDate"
+                [events]="events"
+                (eventClicked)="eventClicked($event.event)"
+              >
+              </mwl-calendar-day-view>
+            </div>
+          </div>
+    </div> -->
+  </div>
+</div>
