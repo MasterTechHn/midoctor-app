@@ -13,7 +13,8 @@ import { AgendaScheduleComponent } from './agenda/agenda-schedule/agenda-schedul
 import { AgendaExceptionModalComponent } from './agenda/agenda-configuration/agenda-exception-modal/agenda-exception-modal.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { CalendarHeaderComponent } from './demo-utils/demo-utils.component';
+// import { CalendarHeaderComponent } from './demo-utils/demo-utils.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -24,7 +25,7 @@ import { CalendarHeaderComponent } from './demo-utils/demo-utils.component';
     AgendaConfigurationComponent,
     AgendaScheduleComponent,
     AgendaExceptionModalComponent,
-    CalendarHeaderComponent
+    // CalendarHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -38,6 +39,7 @@ import { CalendarHeaderComponent } from './demo-utils/demo-utils.component';
     CalendarModule.forRoot({ 
       provide: DateAdapter, useFactory: adapterFactory,
     }),
+    NgbModule
   ],
 })
 export class AppMedportalModule { }

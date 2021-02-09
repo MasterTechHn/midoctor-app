@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { PostulantComponent } from './postulant/postulant.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ModalRequestComponent } from './modal-request/modal-request.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ModalRequestComponent } from './modal-request/modal-request.component';
     AppMaterialModule,
     AppMedportalModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
