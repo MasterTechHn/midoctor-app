@@ -1,22 +1,45 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { CalendarEvent, CalendarView } from 'angular-calendar';
 import {
-  isSameMonth,
-  isSameDay,
-  startOfMonth,
-  endOfMonth,
-  startOfWeek,
-  endOfWeek,
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ViewChild,
+  TemplateRef,
+} from '@angular/core';
+import {
   startOfDay,
   endOfDay,
-  format,
+  subDays,
+  addDays,
+  endOfMonth,
+  isSameDay,
+  isSameMonth,
+  addHours,
 } from 'date-fns';
-import { Observable } from 'rxjs';
-import { colors } from '../../demo-utils/colors';
+import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  CalendarEvent,
+  CalendarEventAction,
+  CalendarEventTimesChangedEvent,
+  CalendarView,
+} from 'angular-calendar';
 
 import { AgendaService } from '../../services/agenda.service';
+
+const colors: any = {
+  red: {
+    primary: '#ad2121',
+    secondary: '#FAE3E3',
+  },
+  blue: {
+    primary: '#1e90ff',
+    secondary: '#D1E8FF',
+  },
+  yellow: {
+    primary: '#e3bc08',
+    secondary: '#FDF1BA',
+  },
+};
 
 import { Agenda } from '../../models/agenda';
 
@@ -31,40 +54,88 @@ export interface Appoitnment {
   userId?: string,
   agendaId?: string
 }
-
-export interface Film {
-  id: number;
-  title: string;
-  release_date: string;
-}
-
-function getTimezoneOffsetString(date: Date): string {
-  const timezoneOffset = date.getTimezoneOffset();
-  const hoursOffset = String(
-    Math.floor(Math.abs(timezoneOffset / 60))
-  ).padStart(2, '0');
-  const minutesOffset = String(Math.abs(timezoneOffset % 60)).padEnd(2, '0');
-  const direction = timezoneOffset > 0 ? '-' : '+';
-
-  return `T00:00:00${direction}${hoursOffset}:${minutesOffset}`;
-}
-
 @Component({
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './agenda-schedule.component.html',
   styleUrls: ['./agenda-schedule.component.css']
 })
+export class AgendaScheduleComponent implements OnInit{
+  @ViewChild('modalContent', { static: true }) modalContent?: TemplateRef<any>;
 
-export class AgendaScheduleComponent implements OnInit {
-  
   view: CalendarView = CalendarView.Month;
+
+  CalendarView = CalendarView;
+
   viewDate: Date = new Date();
 
-  events$?: Observable<CalendarEvent<{ film: Film }>[]>;
+  modalData?: {
+    action: string;
+    event: CalendarEvent;
+  };
 
-  activeDayIsOpen: boolean = false;
+  actions: CalendarEventAction[] = [
+    {
+      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
+      a11yLabel: 'Edit',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('Edited', event);
+      },
+    },
+    {
+      label: '<i class="fas fa-fw fa-trash-alt"></i>',
+      a11yLabel: 'Delete',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.events = this.events.filter((iEvent) => iEvent !== event);
+        this.handleEvent('Deleted', event);
+      },
+    },
+  ];
 
+  refresh: Subject<any> = new Subject();
+
+  events: CalendarEvent[] = [
+    {
+      start: subDays(startOfDay(new Date()), 1),
+      end: addDays(new Date(), 1),
+      title: 'A 3 day event',
+      color: colors.red,
+      actions: this.actions,
+      allDay: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true,
+      },
+      draggable: true,
+    },
+    {
+      start: startOfDay(new Date()),
+      title: 'An event with no end date',
+      color: colors.yellow,
+      actions: this.actions,
+    },
+    {
+      start: subDays(endOfMonth(new Date()), 3),
+      end: addDays(endOfMonth(new Date()), 3),
+      title: 'A long event that spans 2 months',
+      color: colors.blue,
+      allDay: true,
+    },
+    {
+      start: addHours(startOfDay(new Date()), 2),
+      end: addHours(new Date(), 2),
+      title: 'A draggable and resizable event',
+      color: colors.yellow,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true,
+      },
+      draggable: true,
+    },
+  ];
+
+  activeDayIsOpen: boolean = true;
   appointments: Appoitnment[] = [];
   agendaSource: Agenda[] = [];
 
@@ -73,13 +144,12 @@ export class AgendaScheduleComponent implements OnInit {
   };
 
   constructor(
-    private http: HttpClient,
-    private agendaService: AgendaService,
-  ) { }
+    private modal: NgbModal,
+    private agendaService: AgendaService,) 
+    {}
 
   ngOnInit(): void {
     this.getAgendas();
-    this.fetchEvents();
   }
 
   getAgendas(): void{
@@ -88,38 +158,72 @@ export class AgendaScheduleComponent implements OnInit {
         this.agendaSource = resp.data;
       }, err => 
         console.log(err)
-      );
+    );
   }
 
-  fetchEvents(): void {
-    const getStart: any = {
-      month: startOfMonth,
-      week: startOfWeek,
-      day: startOfDay,
-    }[this.view]
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    if (isSameMonth(date, this.viewDate)) {
+      if (
+        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        events.length === 0
+      ) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+      }
+      this.viewDate = date;
+    }
+  }
 
-    const getEnd: any = {
-      month: endOfMonth,
-      week: endOfWeek,
-      day: endOfDay,
-    }[this.view];
+  eventTimesChanged({
+    event,
+    newStart,
+    newEnd,
+  }: CalendarEventTimesChangedEvent): void {
+    this.events = this.events.map((iEvent) => {
+      if (iEvent === event) {
+        return {
+          ...event,
+          start: newStart,
+          end: newEnd,
+        };
+      }
+      return iEvent;
+    });
+    this.handleEvent('Dropped or resized', event);
+  }
 
-    const params = new HttpParams()
-      .set(
-        'primary_release_date.gte',
-        format(getStart(this.viewDate), 'yyyy-MM-dd')
-      )
-      .set(
-        'primary_release_date.lte',
-        format(getEnd(this.viewDate), 'yyyy-MM-dd')
-      )
-      .set('api_key', '0ec33936a68018857d727958dca1424f');
+  handleEvent(action: string, event: CalendarEvent): void {
+    this.modalData = { event, action };
+    this.modal.open(this.modalContent, { size: 'lg' });
+  }
 
-      // this.events$ = this.http
-      // .get('https://api.themoviedb.org/3/discover/movie', { params })
-      // .pipe(
-         
-      // );
-  };
+  addEvent(): void {
+    this.events = [
+      ...this.events,
+      {
+        title: 'New event',
+        start: startOfDay(new Date()),
+        end: endOfDay(new Date()),
+        color: colors.red,
+        draggable: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true,
+        },
+      },
+    ];
+  }
 
+  deleteEvent(eventToDelete: CalendarEvent) {
+    this.events = this.events.filter((event) => event !== eventToDelete);
+  }
+
+  setView(view: CalendarView) {
+    this.view = view;
+  }
+
+  closeOpenMonthViewDay() {
+    this.activeDayIsOpen = false;
+  }
 }
