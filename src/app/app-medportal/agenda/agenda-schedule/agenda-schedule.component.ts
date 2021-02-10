@@ -210,7 +210,7 @@ export class AgendaScheduleComponent implements OnInit{
         resizable: {
           beforeStart: true,
           afterEnd: true,
-        },
+        }, 
       },
     ];
   }
