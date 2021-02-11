@@ -8,14 +8,14 @@
           [(viewDate)]="viewDate"
           (viewDateChange)="closeOpenMonthViewDay()"
         >
-          Previous
+          Anterior
         </div>
         <div
           class="btn btn-outline-secondary"
           mwlCalendarToday
           [(viewDate)]="viewDate"
         >
-          Today
+          Actual
         </div>
         <div
           class="btn btn-primary"
@@ -24,7 +24,7 @@
           [(viewDate)]="viewDate"
           (viewDateChange)="closeOpenMonthViewDay()"
         >
-          Next
+          Siguiente
         </div>
       </div>
     </div>
@@ -38,21 +38,21 @@
           (click)="setView(CalendarView.Month)"
           [class.active]="view === CalendarView.Month"
         >
-          Month
+          Mes
         </div>
         <div
           class="btn btn-primary"
           (click)="setView(CalendarView.Week)"
           [class.active]="view === CalendarView.Week"
         >
-          Week
+          Semana
         </div>
         <div
           class="btn btn-primary"
           (click)="setView(CalendarView.Day)"
           [class.active]="view === CalendarView.Day"
         >
-          Day
+          Día
         </div>
       </div>
     </div>
@@ -113,53 +113,3 @@
       </button>
     </div>
   </ng-template>  
-
-<!-- <div fxLayout="row" fxLayoutAlign="space-around strech" class="calendar-container">
-  <div fxFlex="auto" class="example">
-    <div *ngIf="agendaSource.length == 0">
-      <mat-card>
-        <mat-card-title>No se encontraron agendas configuradas</mat-card-title>
-        <mat-card-content style="text-align: center">
-          <mat-icon class="bad-icon">mood_bad</mat-icon>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-    <div *ngIf="agendaSource.length > 0">
-        <mwl-demo-utils-calendar-header
-          [(view)]="view"
-          [(viewDate)]="viewDate"
-          (viewDateChange)="fetchEvents()"
-          (viewChange)="fetchEvents()">
-        </mwl-demo-utils-calendar-header>
-        
-        <div *ngIf="events$ | async; let events">
-            <div [ngSwitch]="view">
-              <mwl-calendar-month-view
-                *ngSwitchCase="'month'"
-                [viewDate]="viewDate"
-                [events]="events"
-                [activeDayIsOpen]="activeDayIsOpen"
-                (dayClicked)="dayClicked($event.day)"
-                (eventClicked)="eventClicked($event.event)"
-              >
-              </mwl-calendar-month-view>
-              <mwl-calendar-week-view
-                *ngSwitchCase="'week'"
-                [viewDate]="viewDate"
-                [events]="events"
-                (eventClicked)="eventClicked($event.event)"
-              >
-              </mwl-calendar-week-view>
-              <mwl-calendar-day-view
-                *ngSwitchCase="'day'"
-                [viewDate]="viewDate"
-                [events]="events"
-                (eventClicked)="eventClicked($event.event)"
-              >
-              </mwl-calendar-day-view>
-            </div>
-          </div>
-    </div>
-  </div>
-</div> -->

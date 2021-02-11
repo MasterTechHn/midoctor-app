@@ -156,8 +156,9 @@ export class AgendaScheduleComponent implements OnInit{
     this.agendaService.getAgendas(this.doctor)
       .subscribe(resp => {
         this.agendaSource = resp.data;
-      }, err => 
+      }, err => {
         console.log(err)
+      }
     );
   }
 
