@@ -31,9 +31,9 @@ const colors: any = {
     primary: '#ad2121',
     secondary: '#FAE3E3',
   },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF',
+  green: {
+    primary: '#4ad22b',
+    secondary: '#31b214',
   },
   yellow: {
     primary: '#e3bc08',
@@ -93,6 +93,8 @@ export class AgendaScheduleComponent implements OnInit{
   ];
 
   refresh: Subject<any> = new Subject();
+  fechaStart =  new Date("2021-02-12T09:30:00.000Z");
+  fechaEnd = new Date("2021-02-12T10:30:00.000Z");
 
   events: CalendarEvent[] = [
     {
@@ -122,8 +124,8 @@ export class AgendaScheduleComponent implements OnInit{
       allDay: true,
     },
     {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
+      start: addHours(this.fechaStart,6),
+      end: addHours(this.fechaEnd,6),
       title: 'A draggable and resizable event',
       color: colors.yellow,
       actions: this.actions,
@@ -134,7 +136,7 @@ export class AgendaScheduleComponent implements OnInit{
       draggable: true,
     },
   ];
-
+  
   activeDayIsOpen: boolean = true;
   appointments: Appoitnment[] = [];
   agendaSource: Agenda[] = [];
