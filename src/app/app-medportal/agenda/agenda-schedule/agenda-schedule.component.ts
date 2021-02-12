@@ -25,7 +25,6 @@ import {
 } from 'angular-calendar';
 
 import { AppointmentService } from '../../services/appointment.service';
-import { AgendaService } from '../../services/agenda.service';
 
 const colors: any = {
   red: {
@@ -87,50 +86,11 @@ export class AgendaScheduleComponent implements OnInit{
   fechaStart =  new Date("2021-02-12T09:30:00.000Z");
   fechaEnd = new Date("2021-02-12T10:30:00.000Z");
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true,
-    },
-    {
-      start: addHours(this.fechaStart,6),
-      end: addHours(this.fechaEnd,6),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-  ];
+
+  events: CalendarEvent[] = [];
   
   activeDayIsOpen: boolean = true;
   appointmentSource: Appoitnment[] = [];
-  agendaSource: Agenda[] = [];
 
   doctor = {
     id: "601b30cf9a2bfd7430f8a917"
@@ -138,23 +98,11 @@ export class AgendaScheduleComponent implements OnInit{
 
   constructor(
     private modal: NgbModal,
-    private agendaService: AgendaService,
     private appointmentService: AppointmentService) 
     {}
 
   ngOnInit(): void {
-    this.getAgendas();
     this.fetchAppointments();
-  }
-
-  getAgendas(): void{
-    this.agendaService.getAgendas(this.doctor)
-      .subscribe(resp => {
-        this.agendaSource = resp.data;
-      }, err => {
-        console.log(err)
-      }
-    );
   }
 
   fetchAppointments(): void {
@@ -176,10 +124,42 @@ export class AgendaScheduleComponent implements OnInit{
         });
         console.warn(aps);
         this.appointmentSource = aps;
+        this.fetchEvents();
       }, err => {
         console.log(err)
       }
     );
+  }
+
+  fetchEvents(): void{
+    this.appointmentSource.forEach(aps => {
+      let date = aps.date.substring(0,2);
+      console.log(date);
+      let month = aps.date.substr(3,2);
+      console.log(month);
+      let year = aps.date.substring(6,10);
+      console.log(year);
+      let badge = colors.green;
+      let start = `${year}-${month}-${date}T${aps.startTime}:00.000Z`;
+      console.log(start);
+      let end = `${year}-${month}-${date}T${aps.endTime}:00.000Z`;
+
+      if(aps.state == 'open') badge = colors.green;
+      if(aps.state == 'confirm') badge = colors.yellow;
+      if(aps.state == 'closed') badge = colors.red;
+
+      this.events = [
+        ...this.events,
+        {
+          title: aps.description,
+          start: addHours(new Date(start), 6),
+          end: addHours(new Date(end), 6),
+          color: badge,
+          actions: this.actions,
+        },
+      ];
+    });
+    console.warn(this.events);
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
