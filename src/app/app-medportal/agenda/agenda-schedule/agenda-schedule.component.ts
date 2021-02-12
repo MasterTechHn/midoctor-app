@@ -24,6 +24,7 @@ import {
   CalendarView,
 } from 'angular-calendar';
 
+import { AppointmentService } from '../../services/appointment.service';
 import { AgendaService } from '../../services/agenda.service';
 
 const colors: any = {
@@ -42,18 +43,8 @@ const colors: any = {
 };
 
 import { Agenda } from '../../models/agenda';
+import { Appoitnment } from '../../models/appoitnment';
 
-export interface Appoitnment {
-  state: string,
-  day: string,
-  startTime: string,
-  endTime: string,
-  date: string,
-  description: string,
-  diagnostic?: string,
-  userId?: string,
-  agendaId?: string
-}
 @Component({
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -138,7 +129,7 @@ export class AgendaScheduleComponent implements OnInit{
   ];
   
   activeDayIsOpen: boolean = true;
-  appointments: Appoitnment[] = [];
+  appointmentSource: Appoitnment[] = [];
   agendaSource: Agenda[] = [];
 
   doctor = {
@@ -147,17 +138,44 @@ export class AgendaScheduleComponent implements OnInit{
 
   constructor(
     private modal: NgbModal,
-    private agendaService: AgendaService,) 
+    private agendaService: AgendaService,
+    private appointmentService: AppointmentService) 
     {}
 
   ngOnInit(): void {
     this.getAgendas();
+    this.fetchAppointments();
   }
 
   getAgendas(): void{
     this.agendaService.getAgendas(this.doctor)
       .subscribe(resp => {
         this.agendaSource = resp.data;
+      }, err => {
+        console.log(err)
+      }
+    );
+  }
+
+  fetchAppointments(): void {
+    this.appointmentService.getAppointments(this.doctor)
+      .subscribe(resp => {
+        const aps = resp.data.map((appointment: Appoitnment) => {
+          return {
+            state: appointment.state,
+              day: appointment.day,
+              startTime: appointment.startTime,
+              endTime: appointment.endTime,
+              date: appointment.date,
+              description: appointment.description,
+              diagnostic: appointment.diagnostic,
+              user: appointment.user,
+              agenda: appointment.agenda,
+              doctor: appointment.doctor
+          }
+        });
+        console.warn(aps);
+        this.appointmentSource = aps;
       }, err => {
         console.log(err)
       }
