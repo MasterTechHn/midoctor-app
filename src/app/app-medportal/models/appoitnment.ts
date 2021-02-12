@@ -1,4 +1,5 @@
 export interface Appoitnment {
+  _id?: string,
   state: string,
   day: string,
   startTime: string,

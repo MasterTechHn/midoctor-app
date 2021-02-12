@@ -87,7 +87,7 @@ export class AgendaScheduleComponent implements OnInit{
   fechaEnd = new Date("2021-02-12T10:30:00.000Z");
 
 
-  events: CalendarEvent[] = [];
+  events: CalendarEvent<Appoitnment>[] = [];
   
   activeDayIsOpen: boolean = true;
   appointmentSource: Appoitnment[] = [];
@@ -110,16 +110,17 @@ export class AgendaScheduleComponent implements OnInit{
       .subscribe(resp => {
         const aps = resp.data.map((appointment: Appoitnment) => {
           return {
+            _id: appointment._id,
             state: appointment.state,
-              day: appointment.day,
-              startTime: appointment.startTime,
-              endTime: appointment.endTime,
-              date: appointment.date,
-              description: appointment.description,
-              diagnostic: appointment.diagnostic,
-              user: appointment.user,
-              agenda: appointment.agenda,
-              doctor: appointment.doctor
+            day: appointment.day,
+            startTime: appointment.startTime,
+            endTime: appointment.endTime,
+            date: appointment.date,
+            description: appointment.description,
+            diagnostic: appointment.diagnostic,
+            user: appointment.user,
+            agenda: appointment.agenda,
+            doctor: appointment.doctor
           }
         });
         console.warn(aps);
@@ -134,23 +135,19 @@ export class AgendaScheduleComponent implements OnInit{
   fetchEvents(): void{
     this.appointmentSource.forEach(aps => {
       let date = aps.date.substring(0,2);
-      console.log(date);
       let month = aps.date.substr(3,2);
-      console.log(month);
       let year = aps.date.substring(6,10);
-      console.log(year);
       let badge = colors.green;
       let start = `${year}-${month}-${date}T${aps.startTime}:00.000Z`;
-      console.log(start);
       let end = `${year}-${month}-${date}T${aps.endTime}:00.000Z`;
 
-      if(aps.state == 'open') badge = colors.green;
       if(aps.state == 'confirm') badge = colors.yellow;
       if(aps.state == 'closed') badge = colors.red;
 
       this.events = [
         ...this.events,
         {
+          id: aps._id,
           title: aps.description,
           start: addHours(new Date(start), 6),
           end: addHours(new Date(end), 6),
@@ -195,6 +192,7 @@ export class AgendaScheduleComponent implements OnInit{
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
+    console.log('Event clicked', event);
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
   }
