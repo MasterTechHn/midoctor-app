@@ -61,7 +61,7 @@ export class AgendaScheduleComponent implements OnInit{
 
   modalData?: {
     action: string;
-    event: CalendarEvent;
+    aps: Appoitnment[]
   };
 
   actions: CalendarEventAction[] = [
@@ -88,7 +88,7 @@ export class AgendaScheduleComponent implements OnInit{
 
 
   events: CalendarEvent<Appoitnment>[] = [];
-  
+
   activeDayIsOpen: boolean = true;
   appointmentSource: Appoitnment[] = [];
 
@@ -98,7 +98,7 @@ export class AgendaScheduleComponent implements OnInit{
 
   constructor(
     private modal: NgbModal,
-    private appointmentService: AppointmentService) 
+    private appointmentService: AppointmentService)
     {}
 
   ngOnInit(): void {
@@ -193,7 +193,8 @@ export class AgendaScheduleComponent implements OnInit{
 
   handleEvent(action: string, event: CalendarEvent): void {
     console.log('Event clicked', event);
-    this.modalData = { event, action };
+    let aps = this.appointmentSource.filter(a => a._id == event.id);
+    this.modalData = { aps, action };
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
@@ -209,7 +210,7 @@ export class AgendaScheduleComponent implements OnInit{
         resizable: {
           beforeStart: true,
           afterEnd: true,
-        }, 
+        },
       },
     ];
   }
